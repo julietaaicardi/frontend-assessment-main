@@ -1,24 +1,7 @@
 <script lang="ts" setup>
-export interface Column {
-  key: string
-  label: string
-  width?: string
-  align?: 'left' | 'center' | 'right'
-  formatter?: (value: any) => string
-}
+import type { Column, Row, TableProps } from '~/types/ui/table'
 
-export interface Row {
-  [key: string]: any
-}
-
-interface Props {
-  columns: Column[]
-  data: Row[]
-  rowKey?: string
-  pagination?: boolean
-  loading?: boolean
-  emptyMessage?: string
-}
+interface Props extends TableProps {}
 
 const props = withDefaults(defineProps<Props>(), {
   rowKey: 'id',

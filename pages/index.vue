@@ -10,7 +10,7 @@ useHead({
   ],
 });
 
-import type { TranslationKey } from "~/types/translation";
+import type { TranslationKey } from "~/types";
 
 // Placeholder data for the table (will be replaced by Pinia)
 const tableData: TranslationKey[] = [

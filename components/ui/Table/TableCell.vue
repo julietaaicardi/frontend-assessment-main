@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Column, Row } from './Table.vue'
+import type { Column, Row } from '~/types/ui/table'
 
 interface Props {
   column?: Column

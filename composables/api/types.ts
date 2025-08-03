@@ -1,26 +1,16 @@
-import type { DirectusTranslationKey } from '~/types/translation'
+/**
+ * API types re-export
+ * This file re-exports API types from the centralized types structure
+ */
 
-// Types for query parameters
-export interface TranslationKeysQueryParams {
-  search?: string
-  dateFrom?: string
-  dateTo?: string
-  page?: number
-  pageSize?: number
-}
+export type {
+  TranslationKeysQueryParams
+} from '~/types/api/requests'
 
-// Types for API response
-export interface TranslationKeysResponse {
-  data: DirectusTranslationKey[]
-  meta?: {
-    total_count?: number
-    filter_count?: number
-  }
-}
+export type {
+  TranslationKeysResponse
+} from '~/types/api/responses'
 
-// Types for errors
-export interface ApiError {
-  message: string
-  status?: number
-  code?: string
-} 
+export type {
+  ApiError
+} from '~/types/api/errors' 

@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import type { TranslationKey } from '~/types/translation'
-import type { Column } from '~/components/ui/Table/Table.vue'
+import type { TranslationKey, Column } from '~/types'
 
 interface Props {
   data: TranslationKey[]

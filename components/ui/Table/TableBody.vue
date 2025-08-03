@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Row } from './Table.vue'
+import type { Row } from '~/types/ui/table'
 
 // Inject table context
 const tableContext = inject('tableContext')

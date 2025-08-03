@@ -1,4 +1,9 @@
 /**
+ * Domain types for translation functionality
+ */
+
+/**
+ * Core translation value from Directus
  * exists at https://directus.altura.io/items/translationKeys_translations
  */
 export interface TranslationValue {
@@ -22,6 +27,7 @@ export interface TranslationValue {
 }
 
 /**
+ * Directus translation entity
  * exists at https://directus.altura.io/items/translationKeys
  */
 export interface DirectusTranslation {
@@ -39,3 +45,33 @@ export interface DirectusTranslation {
 	 */
 	translations: TranslationValue[];
 }
+
+/**
+ * Application-level translation key interface
+ */
+export interface TranslationKey {
+  key: string
+  translation: string
+  updatedAt: string
+}
+
+/**
+ * Pagination state for UI components
+ */
+export interface PaginationState {
+  currentPage: number
+  totalPages: number
+  startIndex: number
+  endIndex: number
+  totalItems: number
+}
+
+/**
+ * Filter state for translation search
+ */
+export interface FilterState {
+  searchValue: string
+  dateFrom: string
+  dateTo: string
+  pageSize: number
+} 
