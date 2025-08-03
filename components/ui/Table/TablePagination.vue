@@ -17,8 +17,8 @@ const {
   handleNextPage
 } = tableContext
 
-const isPrevDisabled = computed(() => currentPage.value <= 1)
-const isNextDisabled = computed(() => currentPage.value >= totalPages.value)
+const isPrevDisabled = computed(() => !tableContext.hasPrevious)
+const isNextDisabled = computed(() => !tableContext.hasNext)
 </script>
 
 <template>

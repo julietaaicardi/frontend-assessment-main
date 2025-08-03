@@ -13,7 +13,7 @@ const props = withDefaults(defineProps<Props>(), {
     <td colspan="100%" class="empty-state-cell">
       <div class="empty-state-content">
         <slot :message="message">
-          <div class="empty-state-icon">📋</div>
+          <div class="empty-state-icon">⚠️</div>
           <p class="empty-state-text">{{ message }}</p>
         </slot>
       </div>

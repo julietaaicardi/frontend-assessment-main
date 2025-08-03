@@ -4,8 +4,8 @@ import type { TranslationKeysQueryParams, TranslationKeysResponse, ApiError } fr
  * Add search parameter if provided
  */
 const addSearchParam = (params: TranslationKeysQueryParams, queryParams: Record<string, string | number>): void => {
-  if (params.search) {
-    queryParams.search = params.search
+  if (params.search && params.search.trim()) {
+    queryParams['filter[key][_contains]'] = params.search
   }
 }
 
@@ -13,43 +13,57 @@ const addSearchParam = (params: TranslationKeysQueryParams, queryParams: Record<
  * Add date filter parameters if provided
  */
 const addDateFilters = (params: TranslationKeysQueryParams, queryParams: Record<string, string | number>): void => {
-  if (params.dateFrom) {
+  if (params.dateFrom && params.dateFrom.trim()) {
     queryParams['filter[updatedAt][_gte]'] = params.dateFrom
   }
   
-  if (params.dateTo) {
+  if (params.dateTo && params.dateTo.trim()) {
     queryParams['filter[updatedAt][_lte]'] = params.dateTo
   }
 }
 
 /**
- * Add pagination parameters if provided
+ * Add pagination parameters (always included with defaults)
  */
 const addPaginationParams = (params: TranslationKeysQueryParams, queryParams: Record<string, string | number>): void => {
-  if (params.page) {
-    queryParams.page = params.page
-  }
-  
-  if (params.pageSize) {
-    queryParams.limit = params.pageSize
-  }
+  queryParams.page = params.page!
+  queryParams.limit = params.pageSize!
+  queryParams.meta = 'total_count'
 }
 
 /**
- * Build query parameters for the API request
+ * Add fields parameter to specify which fields to retrieve
+ */
+const addFieldsParam = (queryParams: Record<string, string | number>): void => {
+  queryParams.fields = 'key,createdAt,updatedAt,translations.value,translations.languages_code'
+}
+
+/**
+ * Default parameters for translation keys API
+ */
+const DEFAULT_PARAMS: Required<TranslationKeysQueryParams> = {
+  search: '',
+  dateFrom: '',
+  dateTo: '',
+  page: 1,
+  pageSize: 10
+}
+
+/**
+ * Build query parameters for the API request with defaults
  * @param params - Optional query parameters
- * @returns Object with query parameters
+ * @returns Object with query parameters including defaults
  */
 const buildQueryParams = (params?: TranslationKeysQueryParams): Record<string, string | number> => {
   const queryParams: Record<string, string | number> = {}
   
-  if (!params) {
-    return queryParams
-  }
+  // Merge with defaults
+  const mergedParams = { ...DEFAULT_PARAMS, ...params }
   
-  addSearchParam(params, queryParams)
-  addDateFilters(params, queryParams)
-  addPaginationParams(params, queryParams)
+  addSearchParam(mergedParams, queryParams)
+  addDateFilters(mergedParams, queryParams)
+  addPaginationParams(mergedParams, queryParams)
+  addFieldsParam(queryParams)
 
   return queryParams
 }
@@ -100,7 +114,8 @@ export const translationKeysService = {
   async fetch(params?: TranslationKeysQueryParams): Promise<TranslationKeysResponse> {
     try {
       const queryParams = buildQueryParams(params)
-      return await makeApiRequest(queryParams)
+      const response = await makeApiRequest(queryParams)
+      return response
     } catch (error: any) {
       throw createApiError(error)
     }

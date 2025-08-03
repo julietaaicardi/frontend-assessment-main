@@ -37,13 +37,20 @@ export interface DirectusTranslation {
 	 */
 	key: string;
 	/**
-	 * Only available when authenticated, it contains all available variables that you can use in the translation values using `{ ... }`.
+	 * Creation timestamp
 	 */
-	variables: null | string[];
+	createdAt: string;
 	/**
-	 * An array with all different locales for the translation key.
+	 * Last update timestamp
 	 */
-	translations: TranslationValue[];
+	updatedAt: string | null;
+	/**
+	 * Nested translations data with value and language code
+	 */
+	translations: {
+		value: string;
+		languages_code: string;
+	}[];
 }
 
 /**
@@ -74,4 +81,5 @@ export interface FilterState {
   dateFrom: string
   dateTo: string
   pageSize: number
+  page: number
 } 

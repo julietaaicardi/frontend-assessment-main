@@ -1,43 +1,34 @@
 <script lang="ts" setup>
-interface Props {
-  searchValue?: string
-  dateFrom?: string
-  dateTo?: string
-  pageSize?: number
-}
+import { useTranslationStore } from '~/stores'
 
-interface Emits {
-  (e: 'update:searchValue', value: string): void
-  (e: 'update:dateFrom', value: string): void
-  (e: 'update:dateTo', value: string): void
-  (e: 'update:pageSize', value: number): void
-}
+const translationStore = useTranslationStore()
 
-const props = withDefaults(defineProps<Props>(), {
-  searchValue: '',
-  dateFrom: 'Oct 17, 2021',
-  dateTo: 'Oct 17, 2021',
-  pageSize: 10
-})
-
-const emit = defineEmits<Emits>()
-
-// Popover state
+// Popover state (local component state)
 const showDateFilter = ref(false)
 const filterButtonRef = ref<HTMLElement>()
 
+// Computed properties for reactive store values
+const searchValue = computed(() => translationStore.filters.searchValue)
+const dateFrom = computed(() => translationStore.filters.dateFrom)
+const dateTo = computed(() => translationStore.filters.dateTo)
+const pageSize = computed(() => translationStore.filters.pageSize)
+
 const handleSearchChange = (value: string) => {
-  emit('update:searchValue', value)
+  translationStore.updateSearchValue(value)
+  // Trigger fetch with new filters
+  translationStore.fetchKeys()
 }
 
 const handleDateFromChange = (value: string) => {
-  emit('update:dateFrom', value)
+  translationStore.updateDateRange(value, dateTo.value)
 }
 
 const handleDateToChange = (value: string) => {
-  emit('update:dateTo', value)
+  translationStore.updateDateRange(dateFrom.value, value)
   // Automatically close the popover and apply the filter when To date is selected
   closeDateFilter()
+  // Trigger fetch with new filters
+  translationStore.fetchKeys()
 }
 
 const handleFilterClick = (event: MouseEvent) => {

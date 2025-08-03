@@ -10,7 +10,7 @@ if (!tableContext) {
 
 const { data, loading, emptyMessage, columns, rowKey } = tableContext
 
-// Check if data is empty
+// Check if data is empty - data is now a computed ref
 const isEmpty = computed(() => !loading.value && (!data.value || data.value.length === 0))
 </script>
 
