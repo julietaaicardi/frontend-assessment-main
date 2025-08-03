@@ -12,7 +12,7 @@ useHead({
 
 import type { TranslationKey } from "~/types/translation";
 
-// Placeholder data for the table
+// Placeholder data for the table (will be replaced by Pinia)
 const tableData: TranslationKey[] = [
   {
     key: "general.cancel",
@@ -55,36 +55,36 @@ const totalKeys = ref(15000);
 // Event handlers for filters
 const handleSearchUpdate = (value: string) => {
   searchValue.value = value;
-  // TODO: Implement search logic
+  // TODO: Implement search logic with Pinia
 };
 
 const handleDateFromUpdate = (value: string) => {
   dateFrom.value = value;
-  // TODO: Implement date filter logic
+  // TODO: Implement date filter logic with Pinia
 };
 
 const handleDateToUpdate = (value: string) => {
   dateTo.value = value;
-  // TODO: Implement date filter logic
+  // TODO: Implement date filter logic with Pinia
 };
 
 const handlePageSizeUpdate = (value: number) => {
   pageSize.value = value;
-  // TODO: Implement page size logic
+  // TODO: Implement page size logic with Pinia
 };
 
 // Event handlers for pagination
 const handlePrevPage = () => {
   if (currentPage.value > 1) {
     currentPage.value--;
-    // TODO: Fetch new data
+    // TODO: Fetch new data with Pinia
   }
 };
 
 const handleNextPage = () => {
   if (currentPage.value < totalPages.value) {
     currentPage.value++;
-    // TODO: Fetch new data
+    // TODO: Fetch new data with Pinia
   }
 };
 </script>

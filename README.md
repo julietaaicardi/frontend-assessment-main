@@ -62,6 +62,18 @@ frontend-assessment-main/
 - **Language**: TypeScript
 - **Build Tool**: Vite (via Nuxt)
 
+## Environment Setup
+
+1. **Copy environment file**:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Configure environment variables**:
+   - `NUXT_PUBLIC_API_BASE_URL`: API base URL (default: https://directus.altura.io)
+   - `NUXT_PUBLIC_API_TIMEOUT`: API timeout in milliseconds (default: 10000)
+   - `NODE_ENV`: Environment (development/production)
+
 ## Development Setup
 
 1. **Install dependencies**:
