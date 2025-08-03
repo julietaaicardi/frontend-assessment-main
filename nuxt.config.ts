@@ -2,11 +2,23 @@
 export default defineNuxtConfig({
 	compatibilityDate: "2024-11-01",
 	devtools: { enabled: true },
+	
+	// CSS configuration
+	css: ['~/assets/scss/main.scss'],
+	
+	// Components configuration
+	components: [
+		'~/components',
+		'~/components/ui',
+		'~/components/containers',
+		'~/components/features'
+	],
+	
 	nitro: {
 		openAPI: {
 			meta: {
-				title: "My Awesome Project",
-				description: "This might become the next big thing.",
+				title: "Translation Keys Manager",
+				description: "Manage translation keys and their values across different locales",
 				version: "1.0",
 			},
 		},

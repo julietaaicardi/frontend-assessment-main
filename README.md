@@ -1,58 +1,80 @@
-<img src="public/goose.png" class="goose" style="width: 128px; height: 128px"/>
+<img src="assets/images/goose.png" class="goose" style="width: 128px; height: 128px"/>
 
-# Hello there, future goose!
+# Translation Keys Manager
 
-This is your technical assessment, in here we expect you to show the best you can do. We expect to see clean code and a good UI with accessibility in mind. We expect that this assessment won't take more than 8 hours.
+A scalable Nuxt 3 application for managing translation keys and their values across different locales.
 
-## What we are looking for
+## Project Structure
 
-* A good code structure
-* Usage of composables
-* Code with extensibility in mind
-* Use up to date (s)css properties
-* Usage of typescript
-* Clear documentation (if it helps, add a readme.md)
+This project follows Nuxt 3 best practices for scalability and maintainability:
 
-## The assignment
+```
+frontend-assessment-main/
+├── assets/
+│   └── scss/
+│       ├── _variables.scss    # SCSS variables (colors, typography, spacing)
+│       ├── _mixins.scss       # Responsive utilities and common patterns
+│       ├── _tokens.scss       # CSS custom properties (theme tokens)
+│       └── main.scss          # Global styles and imports
+├── layouts/
+│   └── default.vue           # Default layout with header, main, footer
+├── pages/
+│   └── index.vue             # Translation keys management page
+├── public/                   # Static assets
+├── types.d.ts               # TypeScript type definitions
+└── nuxt.config.ts           # Nuxt configuration
+```
 
-You are asked to create a overview of all translation keys in Altura. In this view you must be able to filter on `key`, Translation values in different locales and the `updatedAt` date.
+## Features
 
-### Requirements
+### Current Implementation
+- **Responsive Layout**: Mobile-first design with breakpoint-based responsive behavior
+- **Modern SCSS Architecture**: 
+  - CSS custom properties for theming
+  - Responsive mixins using `clamp()`, `min()`, `max()`
+  - Semantic variable naming
+- **Accessibility**: Proper ARIA labels, semantic HTML, focus management
+- **TypeScript**: Full TypeScript support with proper type definitions
 
-* I can see a list of all translation keys
-    * I can see the key, translation value and the last updated date
-    * When hovering over a row, I see a tooltip with the full translation value for each locale.
-* I can filter on keys using a search input
-* I can filter on translation keys using a date range
-* I can see on which page I am and how many pages there are
-    * I am able to change the page
-    * I am able to change the page size
-* When no keys are found, I see a empty state
+### Page Layout Structure
+1. **Header Section**: 
+   - Search bar for filtering keys
+   - Filter controls (Updated at, Page size)
+   - Date range filter with From/To inputs
+2. **Main Content**:
+   - Total keys display (15.000 Keys)
+   - Data table with Key, Translation, Updated At columns
+   - 5 placeholder rows with sample data
+3. **Footer**:
+   - Pagination information
+   - Navigation arrows (Previous/Next)
 
-The keys are hosted on our directus instance, you can it here:
+### Responsive Behavior
+- **Large screens**: Filters display in one row
+- **Small screens**: Filters stack vertically
+- **Table**: Responsive with proper text truncation
+- **Typography**: Fluid scaling using `clamp()` functions
 
-`https://directus.altura.io/items/translationKeys`
+## Technical Stack
 
-We already took the liberty to write typescript types for you. You can find them in the `types.d.ts` file of this project.
+- **Framework**: Nuxt 3
+- **Styling**: SCSS with CSS custom properties
+- **Language**: TypeScript
+- **Build Tool**: Vite (via Nuxt)
 
-Documentation about filtering in the directus api can be found [here](https://directus.io/docs/guides/connect/filter-rules). One note to add is that you are allowed to use the directus sdk, but bonus points if you don't.
+## Development Setup
 
-### How it should look
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
 
-You can use the following design as a reference, but feel free to make it your own.
+2. **Start development server**:
+   ```bash
+   npm run dev
+   ```
 
-<img src="public/design.png" class="design" />
-
-## Turning the assignment in
-
-You get 3 days to complete this assignment.
-We expect you to create a new repository on your own github account. You can use this repository as a template.
-When you are done, please send us a link to your repository. We will review your code and get back to you as soon as possible.
-If you want to make it private, you should add `roy-ermers` as a collaborator.
-
----
-
-If you have any questions, feel free to ask! You can find me at:
-
-[roy@altura.io](mailto:roy@altura.io)
-[LinkedIn](https://www.linkedin.com/in/roy-ermers-34b414186)
+3. **Build for production**:
+   ```bash
+   npm run build
+   ```

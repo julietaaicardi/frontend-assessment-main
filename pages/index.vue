@@ -1,115 +1,132 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+// Page metadata
+useHead({
+  title: "Translation Keys Manager",
+  meta: [
+    {
+      name: "description",
+      content: "Manage and view translation keys across different locales",
+    },
+  ],
+});
+
+import type { TranslationKey } from "~/types/translation";
+
+// Placeholder data for the table
+const tableData: TranslationKey[] = [
+  {
+    key: "general.cancel",
+    translation: "Cancel",
+    updatedAt: "13 days ago",
+  },
+  {
+    key: "general.accept",
+    translation: "Accept",
+    updatedAt: "14 days ago",
+  },
+  {
+    key: "tender.name",
+    translation: "Tender Name",
+    updatedAt: "15 days ago",
+  },
+  {
+    key: "tender.deadline",
+    translation: "Deadline",
+    updatedAt: "16 days ago",
+  },
+  {
+    key: "user.profile",
+    translation: "Profile",
+    updatedAt: "17 days ago",
+  },
+];
+
+// Placeholder state for filters
+const searchValue = ref("");
+const dateFrom = ref("Oct 17, 2021");
+const dateTo = ref("Oct 17, 2021");
+const pageSize = ref(10);
+
+// Placeholder state for pagination
+const currentPage = ref(1);
+const totalPages = ref(52);
+const totalKeys = ref(15000);
+
+// Event handlers for filters
+const handleSearchUpdate = (value: string) => {
+  searchValue.value = value;
+  // TODO: Implement search logic
+};
+
+const handleDateFromUpdate = (value: string) => {
+  dateFrom.value = value;
+  // TODO: Implement date filter logic
+};
+
+const handleDateToUpdate = (value: string) => {
+  dateTo.value = value;
+  // TODO: Implement date filter logic
+};
+
+const handlePageSizeUpdate = (value: number) => {
+  pageSize.value = value;
+  // TODO: Implement page size logic
+};
+
+// Event handlers for pagination
+const handlePrevPage = () => {
+  if (currentPage.value > 1) {
+    currentPage.value--;
+    // TODO: Fetch new data
+  }
+};
+
+const handleNextPage = () => {
+  if (currentPage.value < totalPages.value) {
+    currentPage.value++;
+    // TODO: Fetch new data
+  }
+};
+</script>
 
 <template>
-	<main>
-		<img src="/goose.png" class="goose" />
-		<h1>Hello there, future goose!</h1>
-		<p>
-			This is your technical assessment, in here we expect you to show the best
-			you can do. We expect to see clean code and a good UI with accessibility
-			in mind. We expect that this assessment won't take more than 8 hours.
-		</p>
-		<h2>What we are looking for</h2>
-		<ul>
-			<li>A good code structure</li>
-			<li>Usage of composables</li>
-			<li>Code with extensibility in mind</li>
-			<li>Use up to date (s)css properties</li>
-			<li>Usage of typescript</li>
-			<li>Clear documentation (if it helps, add a readme.md)</li>
-		</ul>
+  <div class="translation-keys-page">
+    <!-- Header Filters -->
+    <TranslationFilters
+      :search-value="searchValue"
+      :date-from="dateFrom"
+      :date-to="dateTo"
+      :page-size="pageSize"
+      @update:search-value="handleSearchUpdate"
+      @update:date-from="handleDateFromUpdate"
+      @update:date-to="handleDateToUpdate"
+      @update:page-size="handlePageSizeUpdate"
+    />
 
-		<h2>The assignment</h2>
-		<p>
-			You are asked to create a overview of all translation keys in Altura. In
-			this view you must be able to filter on <code>key</code>, Translation
-			values in different locales and the <code>updatedAt</code> date.
-		</p>
-		<h3>Requirements</h3>
-		<ul>
-			<li>I can see a list of all translation keys</li>
-			<ul>
-				<li>I can see the key, translation value and the last updated date</li>
-				<li>
-					When hovering over a row, I see a tooltip with the full translation
-					value for each locale.
-				</li>
-			</ul>
-			<li>I can filter on keys using a search input</li>
-			<li>I can filter on translation keys using a date range</li>
-			<li>I can see on which page I am and how many pages there are</li>
-			<ul>
-				<li>I am able to change the page</li>
-				<li>I am able to change the page size</li>
-			</ul>
-			<li>When no keys are found, I see a empty state</li>
-		</ul>
-		<p>The keys are hosted on our directus instance, you can it here:</p>
-		<p>
-			<code>https://directus.altura.io/items/translationKeys</code>
-		</p>
-		<p>
-			We already took the liberty to write typescript types for you. You can
-			find them in the <code>types.d.ts</code> file of this project.
-		</p>
-		<p>
-			Documentation about filtering in the directus api can be found
-			<a
-				href="https://directus.io/docs/guides/connect/filter-rules"
-				target="_blank"
-			>
-				here.
-			</a>
-			One note to add is that you are allowed to use the directus sdk, but bonus
-			points if you don't.
-		</p>
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Total Keys Display -->
+      <SectionTitle :text="`${totalKeys.toLocaleString()} Keys`" />
 
-		<h3>How it should look</h3>
-		<p>
-			You can use the following design as a reference, but feel free to make it
-			your own.
-		</p>
-		<img src="/design.png" class="design" />
-
-		<h2>Turning the assignment in</h2>
-		<p>
-			You get 3 days to complete this assignment.
-			We expect you to create a new repository on your own github account. You can use this repository as a template.
-			When you are done, please send us a link to your repository. We will review your code and get back to you as soon as possible.
-			If you want to make it private, you should add `roy-ermers` as a collaborator.
-		</p>
-		<hr />
-		<p>If you have any questions, feel free to ask! You can find me at:</p>
-		<a href="mailto:roy@altura.io">roy@altura.io</a>
-		<a href="https://www.linkedin.com/in/roy-ermers-34b414186">LinkedIn</a>
-	</main>
+      <!-- Translation Table -->
+      <TranslationTable :data="tableData" :pagination="true" />
+    </main>
+  </div>
 </template>
-<style scoped>
-h1 {
-	text-align: center;
+
+<style lang="scss" scoped>
+@use "~/assets/scss/variables" as vars;
+
+.translation-keys-page {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$spacing-xl;
 }
 
-main {
-	display: grid;
-	place-content: center;
-	min-height: 100vh;
-	max-width: 40rem;
-	gap: 0.5rem;
-	margin: 0 auto;
-	padding-block: 2.5rem;
-	line-height: 1.5;
-}
-
-.goose {
-	width: 10rem;
-	justify-self: center;
-}
-
-.design {
-	border: 1px solid var(--shade-200);
-	border-radius: 0.5rem;
-	box-shadow:
-		rgba(0, 0, 0, 0.12) 0px 0px 2px 0px,
-		rgba(0, 0, 0, 0.14) 0px 1px 2px 0px;
+// Main Content
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: vars.$spacing-lg;
 }
 </style>
