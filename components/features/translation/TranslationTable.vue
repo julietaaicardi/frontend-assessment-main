@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { Column } from '~/types'
-import TranslationTooltip from '~/components/features/translation/TranslationTooltip.vue'
+import TranslationTooltip from '~/views/translation/components/TranslationTooltip.vue'
 
 interface PaginationInfo {
   currentPage: number

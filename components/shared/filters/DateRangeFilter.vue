@@ -6,9 +6,16 @@ import Overlay from '~/components/ui/Overlay.vue'
 interface Props {
   dateFrom: string
   dateTo: string
+  label?: string
+  ariaLabel?: string
+  errorMessage?: string
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  label: 'Date range',
+  ariaLabel: 'Filter by date range',
+  errorMessage: 'End date must be after start date',
+})
 const emit = defineEmits<{
   'update:dateRange': [from: string, to: string]
 }>()
@@ -50,7 +57,7 @@ const isDateRangeValid = computed(() => {
 const errorMessage = computed(() => {
   if (!localDateFrom.value || !localDateTo.value) return ''
   if (!isDateRangeValid.value) {
-    return 'End date must be after start date'
+    return props.errorMessage
   }
   return ''
 })
@@ -111,8 +118,8 @@ const closeDateFilter = () => {
   >
     <template #trigger>
       <Button
-        label="Updated at"
-        aria-label="Filter by update date"
+        :label="props.label"
+        :aria-label="props.ariaLabel"
         variant="secondary"
         :aria-expanded="showDateFilter"
         aria-haspopup="true"

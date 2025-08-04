@@ -4,9 +4,16 @@ import Overlay from '~/components/ui/Overlay.vue'
 
 interface Props {
   modelValue: number
+  label?: string
+  ariaLabel?: string
+  options?: number[]
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  label: 'Page size',
+  ariaLabel: 'Change page size',
+  options: () => [10, 25, 50, 100],
+})
 const emit = defineEmits<{
   'update:modelValue': [value: number]
 }>()
@@ -14,7 +21,7 @@ const emit = defineEmits<{
 // Popover state (local component state)
 const showPageSizeFilter = ref(false)
 
-const pageSizeOptions = [10, 25, 50, 100]
+const pageSizeOptions = computed(() => props.options)
 
 const handlePageSizeChange = (size: number) => {
   emit('update:modelValue', size)
@@ -41,8 +48,8 @@ const closePageSizeFilter = () => {
   >
     <template #trigger>
       <Button
-        label="Page size"
-        aria-label="Change page size"
+        :label="props.label"
+        :aria-label="props.ariaLabel"
         variant="secondary"
         :aria-expanded="showPageSizeFilter"
         aria-haspopup="true"

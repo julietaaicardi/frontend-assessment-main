@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useTranslationCoordination } from '~/stores'
-import TranslationFiltersContainer from './TranslationFiltersContainer.vue'
-import TranslationTableContainer from './TranslationTableContainer.vue'
+import TranslationFilters from './components/TranslationFilters.vue'
+import TranslationTable from './components/TranslationTable.vue'
 import SectionTitle from '~/components/ui/SectionTitle.vue'
 
 const { fetchKeys, filtersStore, tableStore } = useTranslationCoordination()
@@ -34,17 +34,17 @@ watch(
 </script>
 
 <template>
-  <div class="translation-feature">
-    <TranslationFiltersContainer />
+  <div class="translation-view">
+    <TranslationFilters />
     <SectionTitle :text="sectionTitle" />
-    <TranslationTableContainer :pagination="true" />
+    <TranslationTable :pagination="true" />
   </div>
 </template>
 
 <style lang="scss" scoped>
 @use '~/assets/scss/abstracts' as *;
 
-.translation-feature {
+.translation-view {
   display: flex;
   flex-direction: column;
   gap: $spacing-xl;

@@ -13,13 +13,13 @@ useHead({
   },
 })
 
-import TranslationFeatureContainer from '~/components/features/translation/TranslationFeatureContainer.vue'
+import TranslationView from '~/views/translation/TranslationView.vue'
 </script>
 
 <template>
   <div class="translation-keys-page">
-    <!-- Translation Feature Container -->
-    <TranslationFeatureContainer />
+    <!-- Translation View -->
+    <TranslationView />
   </div>
 </template>
 

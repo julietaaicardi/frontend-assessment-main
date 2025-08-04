@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { DirectusTranslation } from '~/types/domain/translation'
-import { formatTranslationWithFlag } from '~/utils/language'
+import { formatTranslationWithFlag } from '../utils/language'
 import Overlay from '~/components/ui/Overlay.vue'
 
 interface Props {

@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { useTranslationCoordination } from '~/stores'
-import SearchFilter from './filters/SearchFilter.vue'
-import DateRangeFilter from './filters/DateRangeFilter.vue'
-import PageSizeFilter from './filters/PageSizeFilter.vue'
+import SearchFilter from '~/components/shared/filters/SearchFilter.vue'
+import DateRangeFilter from '~/components/shared/filters/DateRangeFilter.vue'
+import PageSizeFilter from '~/components/shared/filters/PageSizeFilter.vue'
 
 const { filtersStore, updateSearchValue, updateDateRange, updatePageSize } =
   useTranslationCoordination()
@@ -27,11 +27,13 @@ const handlePageSizeChange = (size: number) => {
 </script>
 
 <template>
-  <div class="translation-filters-container">
+  <div class="translation-filters">
     <!-- Search Filter -->
     <div class="search-container">
       <SearchFilter
         :model-value="searchValue"
+        placeholder="Search for keys"
+        aria-label="Search for translation keys"
         @update:model-value="handleSearchChange"
       />
     </div>
@@ -56,7 +58,7 @@ const handlePageSizeChange = (size: number) => {
 @use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
-.translation-filters-container {
+.translation-filters {
   display: flex;
   align-items: center;
   justify-content: space-between;

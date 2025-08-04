@@ -3,9 +3,16 @@ import Input from '~/components/ui/Input.vue'
 
 interface Props {
   modelValue: string
+  placeholder?: string
+  ariaLabel?: string
+  debounceMs?: number
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  placeholder: 'Search...',
+  ariaLabel: 'Search',
+  debounceMs: 400,
+})
 const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
@@ -27,7 +34,7 @@ const handleInputChange = (value: string) => {
   // Set new timer
   debounceTimer = setTimeout(() => {
     emit('update:modelValue', value)
-  }, 400)
+  }, props.debounceMs)
 }
 
 // Watch for prop changes to update local value
@@ -41,9 +48,9 @@ watch(
 
 <template>
   <Input
-    placeholder="Search for keys"
+    :placeholder="props.placeholder"
     :model-value="localValue"
-    aria-label="Search for translation keys"
+    :aria-label="props.ariaLabel"
     @update:model-value="handleInputChange"
   />
 </template>

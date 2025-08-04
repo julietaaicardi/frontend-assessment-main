@@ -13,7 +13,7 @@ export default defineNuxtConfig({
   components: [
     '~/components',
     '~/components/ui',
-    '~/components/containers',
+    '~/components/shared',
     '~/components/features',
   ],
 

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import type { Column } from '~/types'
 import { useTranslationCoordination } from '~/stores'
-import { formatRelativeTime } from '~/utils/date'
-import { formatTranslationWithFlag } from '~/utils/language'
-import TranslationTable from './TranslationTable.vue'
+import { formatRelativeTime } from '../utils/date'
+import { formatTranslationWithFlag } from '../utils/language'
+import TranslationTableComponent from '~/components/features/translation/TranslationTable.vue'
 
 const { tableStore, paginationInfo, updatePage } = useTranslationCoordination()
 
@@ -68,7 +68,7 @@ const handleNextPage = () => {
 </script>
 
 <template>
-  <TranslationTable
+  <TranslationTableComponent
     :columns="translationColumns"
     :data="tableData"
     :pagination="pagination"
