@@ -16,11 +16,12 @@ export default defineEventHandler(async event => {
     )
 
     return response
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Server API Error:', error)
     throw createError({
-      statusCode: error.statusCode || 500,
-      statusMessage: error.statusMessage || 'Failed to fetch translation keys',
+      statusCode: (error as any)?.statusCode || 500,
+      statusMessage:
+        (error as any)?.statusMessage || 'Failed to fetch translation keys',
     })
   }
 })

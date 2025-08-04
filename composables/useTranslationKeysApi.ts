@@ -32,8 +32,8 @@ export const useTranslationKeysApi = () => {
       const response = await translationKeysService.fetch(params)
       data.value = response
       return response
-    } catch (err: any) {
-      error.value = err
+    } catch (err: unknown) {
+      error.value = err as ApiError
       throw err
     } finally {
       loading.value = false

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { inject } from 'vue'
 import type { TableContext } from './types'
 
 // Inject table context

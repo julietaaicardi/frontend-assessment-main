@@ -1,3 +1,5 @@
+import type { Ref, ComputedRef } from 'vue'
+
 /**
  * UI table component types
  */
@@ -10,14 +12,14 @@ export interface Column {
   label: string
   width?: string
   align?: 'left' | 'center' | 'right'
-  formatter?: (value: any) => string
+  formatter?: (value: unknown) => string
 }
 
 /**
  * Table row data structure
  */
 export interface Row {
-  [key: string]: any
+  [key: string]: unknown
 }
 
 /**

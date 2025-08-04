@@ -1,8 +1,9 @@
 import type { Column } from '~/types/ui/table'
+import type { ComputedRef } from 'vue'
 
 export interface TableContext {
   columns: ComputedRef<Column[]>
-  data: ComputedRef<any[]>
+  data: ComputedRef<unknown[]>
   rowKey: string
   loading: boolean
   emptyMessage: string

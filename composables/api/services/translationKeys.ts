@@ -89,13 +89,13 @@ const buildQueryParams = (
  * @param error - The caught error
  * @returns ApiError object
  */
-const createApiError = (error: any): ApiError => ({
+const createApiError = (error: unknown): ApiError => ({
   message:
-    error.data?.message ||
-    error.message ||
+    (error as any)?.data?.message ||
+    (error as any)?.message ||
     'An error occurred while fetching translation keys',
-  status: error.statusCode || error.status,
-  code: error.code,
+  status: (error as any)?.statusCode || (error as any)?.status,
+  code: (error as any)?.code,
 })
 
 /**
@@ -145,7 +145,7 @@ export const translationKeysService = {
       const queryParams = buildQueryParams(params)
       const response = await makeApiRequest(queryParams)
       return response
-    } catch (error: any) {
+    } catch (error: unknown) {
       throw createApiError(error)
     }
   },

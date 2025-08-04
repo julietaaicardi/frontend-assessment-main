@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { computed, provide } from 'vue'
 import type { Column, Row, TableProps } from '~/types/ui/table'
 
 interface Props extends TableProps {

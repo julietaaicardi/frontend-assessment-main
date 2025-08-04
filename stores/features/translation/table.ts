@@ -1,10 +1,7 @@
 import { defineStore } from 'pinia'
 import type { FilterState } from '~/types/stores/translation'
-import type {
-  DirectusTranslation,
-  TranslationKey,
-} from '~/types/domain/translation'
-import type { TranslationKeysResponse } from '~/types/api/responses'
+import type { DirectusTranslation } from '~/types/domain/translation'
+import { useTranslationKeysApi } from '~/composables/useTranslationKeysApi'
 
 export interface TranslationTableState {
   keys: DirectusTranslation[]

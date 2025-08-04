@@ -7,6 +7,7 @@ export default [
   js.configs.recommended,
   {
     files: ['**/*.{js,ts}'],
+    ignores: ['.nuxt/**/*'],
     languageOptions: {
       globals: {
         ...globals.browser,
@@ -15,6 +16,22 @@ export default [
         definePageMeta: 'readonly',
         useRuntimeConfig: 'readonly',
         useNuxtApp: 'readonly',
+        vi: 'readonly',
+        defineEventHandler: 'readonly',
+        getQuery: 'readonly',
+        $fetch: 'readonly',
+        createError: 'readonly',
+        useTranslationKeysApi: 'readonly',
+        ComputedRef: 'readonly',
+        Ref: 'readonly',
+        IntersectionObserverInit: 'readonly',
+        HTMLElementEventMap: 'readonly',
+        Buffer: 'readonly',
+        Response: 'readonly',
+        Headers: 'readonly',
+        URL: 'readonly',
+        console: 'readonly',
+        event: 'readonly',
       },
       parser: tsparser,
       parserOptions: {
@@ -30,6 +47,8 @@ export default [
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': 'warn',
       'no-console': 'warn',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-empty-object-type': 'warn',
     },
   },
 ]
