@@ -10,16 +10,15 @@ export const useTranslationCoordination = () => {
   // Computed properties that combine data from both stores
   const paginationInfo = computed(() => {
     const totalPages = Math.ceil(tableStore.totalCount / filtersStore.pageSize)
-    const start = (filtersStore.page - 1) * filtersStore.pageSize + 1
-    const end = Math.min(filtersStore.page * filtersStore.pageSize, tableStore.totalCount)
+    const startIndex = (filtersStore.page - 1) * filtersStore.pageSize + 1
+    const endIndex = Math.min(filtersStore.page * filtersStore.pageSize, tableStore.totalCount)
     
     return {
       currentPage: filtersStore.page,
       totalPages,
       totalItems: tableStore.totalCount,
-      itemsPerPage: filtersStore.pageSize,
-      start,
-      end,
+      startIndex,
+      endIndex,
       hasNext: filtersStore.page < totalPages,
       hasPrevious: filtersStore.page > 1
     }
@@ -61,27 +60,22 @@ export const useTranslationCoordination = () => {
 
   const updateSearchValue = async (searchValue: string) => {
     filtersStore.updateSearchValue(searchValue)
-    await fetchKeys()
   }
 
   const updateDateRange = async (dateFrom: string, dateTo: string) => {
     filtersStore.updateDateRange(dateFrom, dateTo)
-    await fetchKeys()
   }
 
   const updatePageSize = async (pageSize: number) => {
     filtersStore.updatePageSize(pageSize)
-    await fetchKeys()
   }
 
   const updatePage = async (page: number) => {
     filtersStore.updatePage(page)
-    await fetchKeys()
   }
 
   const clearFilters = async () => {
     filtersStore.clearFilters()
-    await fetchKeys()
   }
 
   return {

@@ -1,84 +1,60 @@
 <script lang="ts" setup>
-import type { TranslationKey, Column } from '~/types'
-import { useTranslationCoordination } from '~/stores'
-import { formatRelativeTime } from '~/utils/date'
-import { formatTranslationWithFlag } from '~/utils/language'
+import type { Column } from '~/types'
 import TranslationTooltip from '~/components/features/translation/TranslationTooltip.vue'
 
-const { tableStore, paginationInfo, updatePage } = useTranslationCoordination()
+interface PaginationInfo {
+  currentPage: number
+  totalPages: number
+  startIndex: number
+  endIndex: number
+  totalItems: number
+  hasNext: boolean
+  hasPrevious: boolean
+}
 
 interface Props {
+  columns: Column[]
+  data: any[]
   pagination?: boolean
+  paginationInfo?: PaginationInfo
 }
 
 const props = withDefaults(defineProps<Props>(), {
   pagination: false
 })
 
-// Business-specific column definitions
-const translationColumns: Column[] = [
-  {
-    key: 'key',
-    label: 'Key',
-    align: 'left'
-  },
-  {
-    key: 'translation',
-    label: 'Translation', 
-    align: 'left'
-  },
-  {
-    key: 'updatedAt',
-    label: 'Updated At',
-    align: 'right'
-  }
-]
-
-// Business-specific data mapping from store
-const tableData = computed(() => 
-  tableStore.keys.map((item: any) => {
-    const firstTranslation = item.translations?.length > 0 ? item.translations[0] : null
-    return {
-      key: item.key,
-      translation: firstTranslation ? formatTranslationWithFlag(firstTranslation.value, firstTranslation.languages_code) : '-',
-      updatedAt: formatRelativeTime(item.updatedAt || item.createdAt),
-      // Store the original item for tooltip
-      originalItem: item
-    }
-  })
-)
+const emit = defineEmits<{
+  'prevPage': []
+  'nextPage': []
+}>()
 
 const handlePrevPage = () => {
-  if (paginationInfo.value.hasPrevious) {
-    updatePage(paginationInfo.value.currentPage - 1)
-  }
+  emit('prevPage')
 }
 
 const handleNextPage = () => {
-  if (paginationInfo.value.hasNext) {
-    updatePage(paginationInfo.value.currentPage + 1)
-  }
+  emit('nextPage')
 }
 </script>
 
 <template>
   <Table 
-      :columns="translationColumns"
-      :data="tableData"
-      row-key="key"
-      :pagination="pagination"
-      :external-pagination="{
-        currentPage: paginationInfo.currentPage,
-        totalPages: paginationInfo.totalPages,
-        startIndex: paginationInfo.start,
-        endIndex: paginationInfo.end,
-        totalItems: paginationInfo.totalItems,
-        hasNext: paginationInfo.hasNext,
-        hasPrevious: paginationInfo.hasPrevious,
-        handlePrevPage,
-        handleNextPage
-      }"
-    >
+    :columns="columns"
+    :data="data"
+    row-key="key"
+    :pagination="pagination"
+    :external-pagination="paginationInfo ? {
+      currentPage: paginationInfo.currentPage,
+      totalPages: paginationInfo.totalPages,
+      startIndex: paginationInfo.startIndex,
+      endIndex: paginationInfo.endIndex,
+      totalItems: paginationInfo.totalItems,
+      hasNext: paginationInfo.hasNext,
+      hasPrevious: paginationInfo.hasPrevious,
+      handlePrevPage,
+      handleNextPage
+    } : undefined"
+  >
     <table class="data-table" role="table">
       <TableHeader />
       <TableBody>
