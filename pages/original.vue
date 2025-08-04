@@ -103,8 +103,8 @@ body {
 code {
   font-family: monospace;
   font-size: 1em;
-      color: $color-primary;
-    background-color: $color-shade-100;
+  color: $color-primary;
+  background-color: $color-shade-100;
   padding: 0.25rem;
   border-radius: 0.25rem;
   -webkit-box-decoration-break: clone;

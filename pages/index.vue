@@ -50,7 +50,7 @@ const hasError = computed(() => rootStore.hasError)
 .loading-state,
 .error-state {
   text-align: center;
-      padding: $spacing-xl;
+  padding: $spacing-xl;
   color: $color-text-secondary;
 }
 

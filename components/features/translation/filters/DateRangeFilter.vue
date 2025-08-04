@@ -174,7 +174,7 @@ const closeDateFilter = () => {
 .date-inputs {
   display: flex;
   flex-direction: column;
-      gap: $spacing-md;
+  gap: $spacing-md;
 
   .date-input-group {
     @include mix.flex-column;
@@ -193,7 +193,7 @@ const closeDateFilter = () => {
     color: $color-error;
     font-size: $font-size-xs;
     font-weight: $font-weight-medium;
-          padding: $spacing-xs $spacing-sm;
+    padding: $spacing-xs $spacing-sm;
   }
 
   .action-buttons {
