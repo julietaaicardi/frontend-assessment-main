@@ -1,10 +1,4 @@
-import { config } from '@vue/test-utils'
 import '@testing-library/jest-dom'
-
-// Global test configuration
-config.global.stubs = {
-  // Add any global stubs here
-}
 
 // Don't mock Vue - let it work normally
 // Only mock external dependencies that cause issues

@@ -178,7 +178,6 @@ describe('DatePicker', () => {
 
     const input = getByRole('textbox')
     expect(input).toBeInTheDocument()
-    // Note: The actual range behavior would be tested with the real component
   })
 
   it('handles minDate prop', () => {
@@ -192,7 +191,6 @@ describe('DatePicker', () => {
 
     const input = getByRole('textbox')
     expect(input).toBeInTheDocument()
-    // Note: The actual minDate behavior would be tested with the real component
   })
 
   it('handles maxDate prop', () => {
@@ -206,7 +204,6 @@ describe('DatePicker', () => {
 
     const input = getByRole('textbox')
     expect(input).toBeInTheDocument()
-    // Note: The actual maxDate behavior would be tested with the real component
   })
 
   it('combines multiple props correctly', () => {
@@ -272,7 +269,6 @@ describe('DatePicker', () => {
 
     const input = getByRole('textbox')
     expect(input).toBeInTheDocument()
-    // Note: The actual date formatting would be handled by the real component
   })
 
   it('has correct CSS classes', () => {
