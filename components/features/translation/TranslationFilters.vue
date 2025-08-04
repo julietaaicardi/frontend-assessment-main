@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { useTranslationCoordination } from '~/stores'
+import Overlay from '~/components/ui/Overlay.vue'
 
 const { filtersStore, updateSearchValue, updateDateRange } = useTranslationCoordination()
 
 // Popover state (local component state)
 const showDateFilter = ref(false)
-const filterButtonRef = ref<HTMLElement>()
 
 // Computed properties for reactive store values
 const searchValue = computed(() => filtersStore.searchValue)
@@ -55,15 +55,51 @@ const closeDateFilter = () => {
 
     <!-- Filter Controls -->
     <div class="filter-controls">
-      <Button
-        ref="filterButtonRef"
-        label="Updated at"
-        aria-label="Filter by update date"
-        variant="secondary"
-        :aria-expanded="showDateFilter"
-        aria-haspopup="true"
-        @click="handleFilterClick"
-      />
+      <Overlay
+        v-model:visible="showDateFilter"
+        position="bottom"
+        width="lg"
+        :offset="8"
+        trigger="manual"
+        role="dialog"
+      >
+        <template #trigger>
+          <Button
+            label="Updated at"
+            aria-label="Filter by update date"
+            variant="secondary"
+            :aria-expanded="showDateFilter"
+            aria-haspopup="true"
+            @click="handleFilterClick"
+          />
+        </template>
+        
+        <div class="date-inputs">
+          <div class="date-inputs-row">
+            <div class="date-input-group">
+              <label for="date-from" class="date-label">From</label>
+              <DatePicker
+                id="date-from"
+                :model-value="dateFrom"
+                aria-label="Date from"
+                readonly
+                @update:model-value="handleDateFromChange"
+              />
+            </div>
+            <div class="date-input-group">
+              <label for="date-to" class="date-label">To</label>
+              <DatePicker
+                id="date-to"
+                :model-value="dateTo"
+                aria-label="Date to"
+                readonly
+                @update:model-value="handleDateToChange"
+              />
+            </div>
+          </div>
+        </div>
+      </Overlay>
+      
       <Button
         label="Page size"
         aria-label="Change page size"
@@ -71,39 +107,6 @@ const closeDateFilter = () => {
         @click="handlePageSizeClick"
       />
     </div>
-
-    <!-- Date Range Filter Popover -->
-    <Popover
-      v-model:visible="showDateFilter"
-      position="bottom"
-      width="lg"
-      :offset="8"
-    >
-      <div class="date-inputs">
-        <div class="date-inputs-row">
-          <div class="date-input-group">
-            <label for="date-from" class="date-label">From</label>
-            <DatePicker
-              id="date-from"
-              :model-value="dateFrom"
-              aria-label="Date from"
-              readonly
-              @update:model-value="handleDateFromChange"
-            />
-          </div>
-          <div class="date-input-group">
-            <label for="date-to" class="date-label">To</label>
-            <DatePicker
-              id="date-to"
-              :model-value="dateTo"
-              aria-label="Date to"
-              readonly
-              @update:model-value="handleDateToChange"
-            />
-          </div>
-        </div>
-      </div>
-    </Popover>
   </div>
 </template>
 

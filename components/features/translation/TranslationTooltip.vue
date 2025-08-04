@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { DirectusTranslation } from '~/types/domain/translation'
 import { formatTranslationWithFlag } from '~/utils/language'
-import Tooltip from '~/components/ui/Tooltip.vue'
+import Overlay from '~/components/ui/Overlay.vue'
 
 interface Props {
   translation: DirectusTranslation
@@ -21,7 +21,7 @@ const allTranslations = computed(() => {
 </script>
 
 <template>
-  <Tooltip :position="position" :width="width">
+  <Overlay :position="position" :width="width" trigger="hover" role="tooltip">
     <template #trigger>
       <slot name="trigger" />
     </template>
@@ -43,7 +43,7 @@ const allTranslations = computed(() => {
         <span class="no-translations-text">No translations available</span>
       </div>
     </div>
-  </Tooltip>
+  </Overlay>
 </template>
 
 <style lang="scss" scoped>

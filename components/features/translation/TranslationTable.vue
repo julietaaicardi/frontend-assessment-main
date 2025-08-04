@@ -139,11 +139,12 @@ const handleNextPage = () => {
   white-space: nowrap;
 }
 
-// Ensure tooltip trigger doesn't interfere with truncation
-:deep(.tooltip-trigger) {
+// Ensure overlay trigger doesn't interfere with truncation
+:deep(.overlay-trigger) {
   display: block;
   width: 100%;
   overflow: hidden;
+  cursor: pointer; // Add cursor to indicate it's interactive
 }
 
 .date-text {
