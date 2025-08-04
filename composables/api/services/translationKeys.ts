@@ -28,7 +28,7 @@ const addDateFilters = (params: TranslationKeysQueryParams, queryParams: Record<
 const addPaginationParams = (params: TranslationKeysQueryParams, queryParams: Record<string, string | number>): void => {
   queryParams.page = params.page!
   queryParams.limit = params.pageSize!
-  queryParams.meta = 'total_count'
+  queryParams.meta = 'filter_count'
 }
 
 /**

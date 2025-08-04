@@ -40,7 +40,7 @@ export const useTranslationTableStore = defineStore('translationTable', {
         })
         
         this.setKeys(response.data)
-        this.setMeta(response.meta?.total_count ?? 0)
+        this.setMeta(response.meta?.filter_count ?? 0)
 
         return response
       } catch (error) {

@@ -16,13 +16,78 @@ const emit = defineEmits<{
 // Popover state (local component state)
 const showDateFilter = ref(false)
 
-const handleDateFromChange = (value: string) => {
-  emit('update:dateRange', value, props.dateTo)
+// Local state for date selection before applying
+const localDateFrom = ref('')
+const localDateTo = ref('')
+
+// Initialize local state when popover opens
+watch(showDateFilter, (isVisible) => {
+  if (isVisible) {
+    localDateFrom.value = props.dateFrom
+    localDateTo.value = props.dateTo
+  }
+})
+
+// Date formatting function
+const formatDate = (dateString: string): string => {
+  if (!dateString) return ''
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  })
 }
 
-const handleDateToChange = (value: string) => {
-  emit('update:dateRange', props.dateFrom, value)
-  // Automatically close the popover and apply the filter when To date is selected
+// Validation
+const isDateRangeValid = computed(() => {
+  if (!localDateFrom.value || !localDateTo.value) return true
+  const fromDate = new Date(localDateFrom.value)
+  const toDate = new Date(localDateTo.value)
+  return fromDate <= toDate
+})
+
+const errorMessage = computed(() => {
+  if (!localDateFrom.value || !localDateTo.value) return ''
+  if (!isDateRangeValid.value) {
+    return 'End date must be after start date'
+  }
+  return ''
+})
+
+const handleDateFromChange = (value: string | Date | [Date, Date] | null) => {
+  // Handle single date selection (not range)
+  if (value instanceof Date) {
+    localDateFrom.value = value.toISOString().split('T')[0]
+  } else if (typeof value === 'string') {
+    localDateFrom.value = value
+  } else {
+    localDateFrom.value = ''
+  }
+}
+
+const handleDateToChange = (value: string | Date | [Date, Date] | null) => {
+  // Handle single date selection (not range)
+  if (value instanceof Date) {
+    localDateTo.value = value.toISOString().split('T')[0]
+  } else if (typeof value === 'string') {
+    localDateTo.value = value
+  } else {
+    localDateTo.value = ''
+  }
+}
+
+const handleApply = () => {
+  if (isDateRangeValid.value) {
+    emit('update:dateRange', localDateFrom.value, localDateTo.value)
+    closeDateFilter()
+  }
+}
+
+const handleClear = () => {
+  localDateFrom.value = ''
+  localDateTo.value = ''
+  emit('update:dateRange', '', '')
   closeDateFilter()
 }
 
@@ -39,7 +104,7 @@ const closeDateFilter = () => {
   <Overlay
     v-model:visible="showDateFilter"
     position="bottom"
-    width="lg"
+    width="xl"
     :offset="8"
     trigger="manual"
     role="dialog"
@@ -61,9 +126,9 @@ const closeDateFilter = () => {
           <label for="date-from" class="date-label">From</label>
           <DatePicker
             id="date-from"
-            :model-value="dateFrom"
+            :model-value="localDateFrom ? new Date(localDateFrom) : null"
+            :placeholder="localDateFrom ? formatDate(localDateFrom) : 'Select start date'"
             aria-label="Date from"
-            readonly
             @update:model-value="handleDateFromChange"
           />
         </div>
@@ -71,12 +136,28 @@ const closeDateFilter = () => {
           <label for="date-to" class="date-label">To</label>
           <DatePicker
             id="date-to"
-            :model-value="dateTo"
+            :model-value="localDateTo ? new Date(localDateTo) : null"
+            :placeholder="localDateTo ? formatDate(localDateTo) : 'Select end date'"
             aria-label="Date to"
-            readonly
             @update:model-value="handleDateToChange"
           />
         </div>
+      </div>
+      
+      <!-- Error message -->
+      <div v-if="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+      
+      <!-- Action buttons -->
+      <div class="action-buttons">
+        <Button
+          label="Apply"
+          variant="primary"
+          size="sm"
+          :disabled="!isDateRangeValid"
+          @click="handleApply"
+        />
       </div>
     </div>
   </Overlay>
@@ -102,6 +183,24 @@ const closeDateFilter = () => {
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
+  }
+  
+  .error-message {
+    color: var(--error-500);
+    font-size: vars.$font-size-xs;
+    font-weight: vars.$font-weight-medium;
+    padding: vars.$spacing-xs vars.$spacing-sm;
+    background-color: var(--error-50);
+    border-radius: vars.$border-radius-sm;
+    border: 1px solid var(--error-200);
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: vars.$spacing-sm;
+    justify-content: flex-end;
+    padding-top: vars.$spacing-sm;
+    border-top: 1px solid var(--shade-200);
   }
 }
 

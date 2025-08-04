@@ -1,15 +1,20 @@
 <script lang="ts" setup>
+import Datepicker from '@vuepic/vue-datepicker'
+import '@vuepic/vue-datepicker/dist/main.css'
+
 interface Props {
-  modelValue?: string
+  modelValue?: string | Date | [Date, Date] | null
   placeholder?: string
   disabled?: boolean
-  readonly?: boolean
   ariaLabel?: string
   id?: string
+  range?: boolean
+  minDate?: Date
+  maxDate?: Date
 }
 
 interface Emits {
-  (e: 'update:modelValue', value: string): void
+  (e: 'update:modelValue', value: string | Date | [Date, Date] | null): void
   (e: 'focus', event: FocusEvent): void
   (e: 'blur', event: FocusEvent): void
 }
@@ -18,16 +23,17 @@ const props = withDefaults(defineProps<Props>(), {
   modelValue: '',
   placeholder: 'Select date',
   disabled: false,
-  readonly: false,
   ariaLabel: 'Date picker',
-  id: undefined
+  id: undefined,
+  range: false,
+  minDate: undefined,
+  maxDate: undefined
 })
 
 const emit = defineEmits<Emits>()
 
-const handleInput = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  emit('update:modelValue', target.value)
+const handleUpdate = (value: string | Date) => {
+  emit('update:modelValue', value)
 }
 
 const handleFocus = (event: FocusEvent) => {
@@ -41,16 +47,23 @@ const handleBlur = (event: FocusEvent) => {
 
 <template>
   <div class="date-picker">
-    <input
+    <Datepicker
       :id="id"
-      type="text"
+      :model-value="modelValue"
       :placeholder="placeholder"
-      :value="modelValue"
       :disabled="disabled"
-      :readonly="readonly"
       :aria-label="ariaLabel"
+      :range="range"
+      :min-date="minDate"
+      :max-date="maxDate"
+      :enable-time-picker="false"
+      :clearable="false"
+      :auto-apply="true"
+      :teleport="true"
+      teleport-to="body"
+      format="MMM dd, yyyy"
       class="date-picker__input"
-      @input="handleInput"
+      @update:model-value="handleUpdate"
       @focus="handleFocus"
       @blur="handleBlur"
     />
@@ -65,19 +78,72 @@ const handleBlur = (event: FocusEvent) => {
   position: relative;
   
   &__input {
-    @include mix.input-base;
     width: 100%;
     text-align: center;
     
-    &:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      background-color: var(--shade-50);
+    :deep(.dp__input) {
+      @include mix.input-base;
+      width: 100%;
+      text-align: center;
+      padding: vars.$spacing-sm vars.$spacing-md;
+      background-color: var(--shade-0);
+      font-size: vars.$font-size-sm;
+      cursor: pointer;
+      
+      &:focus {
+        outline: none;
+        border-color: var(--primary-500);
+        box-shadow: 0 0 0 2px var(--primary-100);
+      }
+      
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        background-color: var(--shade-50);
+      }
     }
     
-    &:readonly {
-      background-color: var(--shade-50);
-      cursor: default;
+    // Remove calendar icon
+    :deep(.dp__input_icon) {
+      display: none;
+    }
+    
+    // Hide the calendar icon container
+    :deep(.dp__input_wrap) {
+      position: relative;
+      
+      &::after {
+        display: none;
+      }
+    }
+    
+    // Ensure calendar dropdown is visible
+    :deep(.dp__main) {
+      z-index: 99999;
+      position: fixed;
+    }
+    
+    :deep(.dp__outer_menu) {
+      z-index: 99999;
+      position: fixed;
+    }
+    
+    :deep(.dp__menu) {
+      z-index: 99999;
+      position: fixed;
+    }
+    
+    :deep(.dp__calendar) {
+      z-index: 99999;
+      position: fixed;
+    }
+    
+    :deep(.dp__calendar_header) {
+      z-index: 99999;
+    }
+    
+    :deep(.dp__calendar_row) {
+      z-index: 99999;
     }
   }
 }

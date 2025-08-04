@@ -2,8 +2,15 @@
 import { useTranslationCoordination } from '~/stores'
 import TranslationFiltersContainer from './TranslationFiltersContainer.vue'
 import TranslationTableContainer from './TranslationTableContainer.vue'
+import SectionTitle from '~/components/ui/SectionTitle.vue'
 
-const { fetchKeys, filtersStore } = useTranslationCoordination()
+const { fetchKeys, filtersStore, tableStore } = useTranslationCoordination()
+
+// Computed property for the section title with count
+const sectionTitle = computed(() => {
+  const count = tableStore.totalCount
+  return `${count.toLocaleString()} Keys`
+})
 
 // Initial data fetch
 onMounted(async () => {
@@ -29,6 +36,7 @@ watch(
 <template>
   <div class="translation-feature">
     <TranslationFiltersContainer />
+    <SectionTitle :text="sectionTitle" />
     <TranslationTableContainer :pagination="true" />
   </div>
 </template>

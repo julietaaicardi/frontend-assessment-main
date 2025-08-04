@@ -436,6 +436,8 @@ onUnmounted(() => {
   box-shadow: vars.$shadow-lg;
   padding: vars.$spacing-md;
   overflow: auto;
+  z-index: 1000;
+  position: relative;
   
   // Width variants
   &--width-auto {
