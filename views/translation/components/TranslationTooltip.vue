@@ -14,7 +14,6 @@ const props = withDefaults(defineProps<Props>(), {
   width: 'md',
 })
 
-// Get all translations for this key
 const allTranslations = computed(() => {
   return props.translation.translations || []
 })

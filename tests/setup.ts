@@ -1,8 +1,5 @@
 import '@testing-library/jest-dom'
 
-// Don't mock Vue - let it work normally
-// Only mock external dependencies that cause issues
-
 // Mock Nuxt composables
 vi.mock('#app', () => ({
   useRuntimeConfig: () => ({

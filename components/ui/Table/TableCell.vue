@@ -56,7 +56,6 @@ const props = withDefaults(defineProps<Props>(), {
   }
 }
 
-// Responsive adjustments
 @include mix.respond-to(md) {
   .table-cell {
     padding: $spacing-lg;

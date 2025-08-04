@@ -17,7 +17,6 @@ export default defineEventHandler(async event => {
 
     return response
   } catch (error: unknown) {
-    console.error('Server API Error:', error)
     throw createError({
       statusCode: (error as any)?.statusCode || 500,
       statusMessage:

@@ -20,14 +20,11 @@ const emit = defineEmits<{
   'update:dateRange': [from: string, to: string]
 }>()
 
-// Popover state (local component state)
 const showDateFilter = ref(false)
 
-// Local state for date selection before applying
 const localDateFrom = ref('')
 const localDateTo = ref('')
 
-// Initialize local state when popover opens
 watch(showDateFilter, isVisible => {
   if (isVisible) {
     localDateFrom.value = props.dateFrom
@@ -35,7 +32,6 @@ watch(showDateFilter, isVisible => {
   }
 })
 
-// Date formatting function
 const formatDate = (dateString: string): string => {
   if (!dateString) return ''
   const date = new Date(dateString)
@@ -46,7 +42,6 @@ const formatDate = (dateString: string): string => {
   })
 }
 
-// Validation
 const isDateRangeValid = computed(() => {
   if (!localDateFrom.value || !localDateTo.value) return true
   const fromDate = new Date(localDateFrom.value)
@@ -63,7 +58,6 @@ const errorMessage = computed(() => {
 })
 
 const handleDateFromChange = (value: string | Date | [Date, Date] | null) => {
-  // Handle single date selection (not range)
   if (value instanceof Date) {
     localDateFrom.value = value.toISOString().split('T')[0]
   } else if (typeof value === 'string') {
@@ -74,7 +68,6 @@ const handleDateFromChange = (value: string | Date | [Date, Date] | null) => {
 }
 
 const handleDateToChange = (value: string | Date | [Date, Date] | null) => {
-  // Handle single date selection (not range)
   if (value instanceof Date) {
     localDateTo.value = value.toISOString().split('T')[0]
   } else if (typeof value === 'string') {
@@ -212,7 +205,6 @@ const closeDateFilter = () => {
   }
 }
 
-// Add styles for side-by-side date pickers
 .date-inputs {
   .date-inputs-row {
     display: flex;

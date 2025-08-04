@@ -6,18 +6,15 @@ import SectionTitle from '~/components/ui/SectionTitle.vue'
 
 const { fetchKeys, filtersStore, tableStore } = useTranslationCoordination()
 
-// Computed property for the section title with count
 const sectionTitle = computed(() => {
   const count = tableStore.totalCount
   return `${count.toLocaleString()} Keys`
 })
 
-// Initial data fetch
 onMounted(async () => {
   await fetchKeys()
 })
 
-// Watch for specific filter changes and refetch data
 watch(
   [
     () => filtersStore.searchValue,

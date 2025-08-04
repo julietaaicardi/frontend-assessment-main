@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-// Layout metadata
 useHead({
   title: 'Translation Keys Manager',
   meta: [
@@ -89,7 +88,6 @@ useHead({
   width: 100%;
 }
 
-// Responsive adjustments
 @include mix.respond-to(sm) {
   .header-content {
     gap: $spacing-lg;

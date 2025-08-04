@@ -10,7 +10,6 @@ if (!tableContext) {
 
 const { data, loading, emptyMessage, columns, rowKey } = tableContext
 
-// Check if data is empty - data is now a computed ref
 const isEmpty = computed(
   () => !loading.value && (!data.value || data.value.length === 0)
 )
@@ -47,11 +46,3 @@ const isEmpty = computed(
     </slot>
   </tbody>
 </template>
-
-<style lang="scss" scoped>
-@use '~/assets/scss/abstracts' as *;
-
-tbody {
-  // Styles will be handled by individual row and cell components
-}
-</style>

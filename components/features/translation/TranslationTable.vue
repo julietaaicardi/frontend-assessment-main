@@ -62,7 +62,6 @@ const handleNextPage = () => {
     <table class="data-table" role="table">
       <TableHeader />
       <TableBody>
-        <!-- Business-specific cell rendering -->
         <template #cell-key="{ value }">
           <span class="key-text">{{ value }}</span>
         </template>
@@ -126,7 +125,7 @@ const handleNextPage = () => {
   display: block;
   width: 100%;
   overflow: hidden;
-  cursor: pointer; // Add cursor to indicate it's interactive
+  cursor: pointer;
 }
 
 .date-text {
@@ -135,7 +134,6 @@ const handleNextPage = () => {
   display: block;
 }
 
-// Ensure table takes full width
 :deep(.data-table) {
   width: 100%;
   table-layout: fixed;

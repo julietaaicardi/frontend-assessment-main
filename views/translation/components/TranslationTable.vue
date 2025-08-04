@@ -15,7 +15,6 @@ const props = withDefaults(defineProps<Props>(), {
   pagination: false,
 })
 
-// Business-specific column definitions
 const translationColumns: Column[] = [
   {
     key: 'key',
@@ -34,7 +33,6 @@ const translationColumns: Column[] = [
   },
 ]
 
-// Business-specific data mapping from store
 const tableData = computed(() =>
   tableStore.keys.map((item: any) => {
     const firstTranslation =
@@ -48,7 +46,6 @@ const tableData = computed(() =>
           )
         : '-',
       updatedAt: formatRelativeTime(item.updatedAt || item.createdAt),
-      // Store the original item for tooltip
       originalItem: item,
     }
   })

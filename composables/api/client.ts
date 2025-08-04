@@ -35,17 +35,6 @@ export const createApiClient = (path: string = 'items'): AxiosInstance => {
   client.interceptors.response.use(
     (response: AxiosResponse) => response,
     error => {
-      // Handle common errors
-      if (error.response) {
-        // Server responded with error status
-        console.error('API Error:', error.response.status, error.response.data)
-      } else if (error.request) {
-        // Request was made but no response received
-        console.error('Network Error:', error.request)
-      } else {
-        // Something else happened
-        console.error('Error:', error.message)
-      }
       return Promise.reject(error)
     }
   )
@@ -53,11 +42,6 @@ export const createApiClient = (path: string = 'items'): AxiosInstance => {
   return client
 }
 
-// Default client for /items endpoints
 export const apiClient = createApiClient('items')
-
-// Future clients (uncomment when needed)
-// export const userClient = createApiClient('user')
-// export const authClient = createApiClient('auth')
 
 export default apiClient

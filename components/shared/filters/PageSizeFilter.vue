@@ -18,7 +18,6 @@ const emit = defineEmits<{
   'update:modelValue': [value: number]
 }>()
 
-// Popover state (local component state)
 const showPageSizeFilter = ref(false)
 
 const pageSizeOptions = computed(() => props.options)

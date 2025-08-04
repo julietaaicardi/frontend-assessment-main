@@ -7,7 +7,6 @@ import PageSizeFilter from '~/components/shared/filters/PageSizeFilter.vue'
 const { filtersStore, updateSearchValue, updateDateRange, updatePageSize } =
   useTranslationCoordination()
 
-// Computed properties for reactive store values
 const searchValue = computed(() => filtersStore.searchValue)
 const dateFrom = computed(() => filtersStore.dateFrom)
 const dateTo = computed(() => filtersStore.dateTo)
@@ -83,7 +82,6 @@ const handlePageSizeChange = (size: number) => {
   gap: $spacing-sm;
 }
 
-// Responsive adjustments
 @include mix.respond-to(sm) {
   .search-container {
     max-width: none;

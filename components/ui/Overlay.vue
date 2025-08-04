@@ -1,25 +1,14 @@
 <script lang="ts" setup>
 interface Props {
-  // Trigger behavior
   trigger?: 'hover' | 'click' | 'focus' | 'manual'
-
-  // Positioning
   position?: 'top' | 'bottom' | 'left' | 'right'
   width?: 'auto' | 'sm' | 'md' | 'lg' | 'xl'
   offset?: number
-
-  // Timing
   delay?: number
   hideDelay?: number
-
-  // State
   visible?: boolean
-
-  // Accessibility
   role?: 'tooltip' | 'dialog' | 'menu'
   ariaLabel?: string
-
-  // Advanced features
   autoPosition?: boolean
   flip?: boolean
   closeOnOutsideClick?: boolean
@@ -56,13 +45,11 @@ const emit = defineEmits<{
   hide: []
 }>()
 
-// Refs
 const overlayRef = ref<HTMLElement>()
 const triggerRef = ref<HTMLElement>()
 const isMounted = ref(false)
 const internalVisible = ref(false)
 
-// Computed
 const isVisible = computed({
   get: () =>
     props.visible !== undefined ? props.visible : internalVisible.value,
@@ -96,7 +83,6 @@ const overlayClasses = computed(() => [
   `overlay--animation-${props.animation}`,
 ])
 
-// Position calculation
 const positionStyle = ref<Record<string, string | number>>({
   position: 'fixed',
   top: '0px',
@@ -108,17 +94,14 @@ const positionStyle = ref<Record<string, string | number>>({
 })
 
 const calculatePosition = (event: Event) => {
-  // For hover events, use the triggerRef directly since event.currentTarget might not be reliable
   const target = triggerRef.value || (event.currentTarget as HTMLElement)
   if (!target?.getBoundingClientRect) {
-    console.log('No valid target found for position calculation')
     return null
   }
 
   const rect = target.getBoundingClientRect()
   const overlayRect = overlayRef.value?.getBoundingClientRect()
 
-  // Use actual overlay dimensions if available, otherwise estimate
   const width = overlayRect?.width ?? getEstimatedWidth()
   const height = overlayRect?.height ?? getEstimatedHeight()
 
@@ -172,25 +155,21 @@ const calculateOptimalPosition = (
       break
   }
 
-  // Prevent overflow if enabled
   if (props.preventOverflow) {
     const viewportWidth = window.innerWidth
     const viewportHeight = window.innerHeight
 
-    // Adjust horizontal position
     if (left < 0) left = 10
     if (left + overlaySize.width > viewportWidth) {
       left = viewportWidth - overlaySize.width - 10
     }
 
-    // Adjust vertical position
     if (top < 0) top = 10
     if (top + overlaySize.height > viewportHeight) {
       top = viewportHeight - overlaySize.height - 10
     }
   }
 
-  // Auto-flip if enabled
   if (props.flip && props.preventOverflow) {
     const viewportWidth = window.innerWidth
     const viewportHeight = window.innerHeight
@@ -219,7 +198,6 @@ const calculateOptimalPosition = (
   return { top, left, position }
 }
 
-// Timeout management
 const showTimeout = ref<NodeJS.Timeout | null>(null)
 const hideTimeout = ref<NodeJS.Timeout | null>(null)
 

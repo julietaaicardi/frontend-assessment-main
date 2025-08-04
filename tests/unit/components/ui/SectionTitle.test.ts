@@ -88,7 +88,6 @@ describe('SectionTitle', () => {
 
     const h1 = container.querySelector('h1')
     expect(h1).toBeInTheDocument()
-    // Vue normalizes whitespace, so we check that the element exists but may not preserve exact whitespace
     expect(h1).toBeInTheDocument()
   })
 
@@ -181,7 +180,6 @@ describe('SectionTitle', () => {
     })
 
     const h1 = container.querySelector('h1')
-    // Vue normalizes line breaks, so we check that the text is present but may not preserve exact formatting
     expect(h1).toHaveTextContent('Multi-line Title')
   })
 })

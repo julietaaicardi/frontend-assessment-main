@@ -2,7 +2,6 @@ import { describe, it, expect, vi } from 'vitest'
 import { render } from '@testing-library/vue'
 import Table from '~/components/ui/Table/Table.vue'
 
-// Mock Vue composition API
 vi.mock('vue', async () => {
   const actual = await vi.importActual('vue')
   return {
