@@ -31,17 +31,17 @@ const { columns } = tableContext
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 
 .table-header {
   background-color: var(--shade-50);
-  padding: vars.$spacing-md;
+  padding: $spacing-md;
   text-align: left;
-  font-weight: vars.$font-weight-semibold;
-  font-size: vars.$font-size-sm;
-  color: vars.$color-text-secondary;
+  font-weight: $font-weight-semibold;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
   letter-spacing: 0.05em;
-  border-bottom: 1px solid vars.$color-border;
+  border-bottom: 1px solid $color-border;
 
   &.header-left {
     text-align: left;
@@ -56,11 +56,11 @@ const { columns } = tableContext
   }
 
   &:first-child {
-    border-top-left-radius: vars.$border-radius-lg;
+    border-top-left-radius: $border-radius-lg;
   }
 
   &:last-child {
-    border-top-right-radius: vars.$border-radius-lg;
+    border-top-right-radius: $border-radius-lg;
   }
 }
 </style>

@@ -58,7 +58,7 @@ const handleBlur = (event: FocusEvent) => {
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
 .input {

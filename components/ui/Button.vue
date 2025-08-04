@@ -44,7 +44,7 @@ const handleClick = (event: MouseEvent) => {
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
 .button {
@@ -52,50 +52,50 @@ const handleClick = (event: MouseEvent) => {
 
   // Variants
   &--primary {
-    background-color: vars.$color-primary;
+    background-color: $color-primary;
     color: white;
-    border-color: vars.$color-primary;
+    border-color: $color-primary;
 
     &:hover:not(:disabled) {
-      background-color: var(--primary-600);
-      border-color: var(--primary-600);
+      background-color: $color-primary-hover;
+      border-color: $color-primary-hover;
     }
   }
 
   &--secondary {
-    background-color: var(--shade-100);
-    color: vars.$color-text-primary;
-    border-color: vars.$color-border;
+    background-color: $color-shade-100;
+    color: $color-text-primary;
+    border-color: $color-border;
 
     &:hover:not(:disabled) {
-      background-color: var(--shade-200);
+      background-color: $color-shade-200;
     }
   }
 
   &--ghost {
     background-color: transparent;
-    color: vars.$color-text-primary;
+    color: $color-text-primary;
     border-color: transparent;
 
     &:hover:not(:disabled) {
-      background-color: var(--shade-100);
+      background-color: $color-shade-100;
     }
   }
 
   // Sizes
   &--sm {
-    padding: vars.$spacing-xs vars.$spacing-sm;
-    font-size: vars.$font-size-xs;
+    padding: $spacing-xs $spacing-sm;
+    font-size: $font-size-xs;
   }
 
   &--md {
-    padding: vars.$spacing-sm vars.$spacing-md;
-    font-size: vars.$font-size-sm;
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-sm;
   }
 
   &--lg {
-    padding: vars.$spacing-md vars.$spacing-lg;
-    font-size: vars.$font-size-base;
+    padding: $spacing-md $spacing-lg;
+    font-size: $font-size-base;
   }
 
   &--disabled {

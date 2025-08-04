@@ -105,14 +105,14 @@ provide('tableContext', {
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 
 .table-wrapper {
-  background-color: vars.$color-background;
-  border: 1px solid vars.$color-border;
-  border-radius: vars.$border-radius-lg;
+  background-color: $color-background;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-lg;
   overflow: hidden;
-  box-shadow: vars.$shadow-sm;
+  box-shadow: $shadow-sm;
   width: 100%;
 
   :deep(.data-table) {

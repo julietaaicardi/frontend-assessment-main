@@ -89,22 +89,22 @@ const handleNextPage = () => {
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
 .key-text {
   font-family:
     'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New',
     monospace;
-  font-size: vars.$font-size-sm;
-  color: vars.$color-text-primary;
+  font-size: $font-size-sm;
+  color: $color-text-primary;
   @include mix.text-truncate;
   display: block;
 }
 
 .translation-value {
-  color: vars.$color-text-primary;
-  font-size: vars.$font-size-sm;
+  color: $color-text-primary;
+  font-size: $font-size-sm;
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -130,8 +130,8 @@ const handleNextPage = () => {
 }
 
 .date-text {
-  font-size: vars.$font-size-sm;
-  color: vars.$color-text-secondary;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
   display: block;
 }
 

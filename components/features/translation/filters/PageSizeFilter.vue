@@ -67,7 +67,7 @@ const closePageSizeFilter = () => {
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
 .page-size-options {
@@ -79,33 +79,33 @@ const closePageSizeFilter = () => {
   padding: 0;
 
   .page-size-option {
-    padding: vars.$spacing-sm vars.$spacing-md;
+    padding: $spacing-sm $spacing-md;
     border: none;
     background: none;
     text-align: left;
     cursor: pointer;
-    font-size: vars.$font-size-sm;
-    color: vars.$color-text-primary;
+    font-size: $font-size-sm;
+    color: $color-text-primary;
     transition: background-color 0.2s ease;
     width: 100%;
     margin: 0;
 
     &:hover {
-      background-color: vars.$color-primary-light;
+      background-color: $color-primary-light;
     }
 
     &.active {
-      background-color: vars.$color-primary-light;
-      color: vars.$color-primary;
-      font-weight: vars.$font-weight-medium;
+      background-color: $color-primary-light;
+      color: $color-primary;
+      font-weight: $font-weight-medium;
     }
 
     &:first-child {
-      border-radius: vars.$border-radius-sm vars.$border-radius-sm 0 0;
+      border-radius: $border-radius-sm $border-radius-sm 0 0;
     }
 
     &:last-child {
-      border-radius: 0 0 vars.$border-radius-sm vars.$border-radius-sm;
+      border-radius: 0 0 $border-radius-sm $border-radius-sm;
     }
   }
 }

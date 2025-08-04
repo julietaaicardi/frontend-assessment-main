@@ -22,18 +22,18 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
 .empty-state-row {
   .empty-state-cell {
-    padding: calc(#{vars.$spacing-xl} * 2);
+    padding: calc(#{$spacing-xl} * 2);
     text-align: center;
 
     .empty-state-content {
       @include mix.flex-center;
       flex-direction: column;
-      gap: vars.$spacing-md;
+      gap: $spacing-md;
 
       .empty-state-icon {
         font-size: 2rem;
@@ -41,8 +41,8 @@ const props = withDefaults(defineProps<Props>(), {
       }
 
       .empty-state-text {
-        color: vars.$color-text-secondary;
-        font-size: vars.$font-size-sm;
+        color: $color-text-secondary;
+        font-size: $font-size-sm;
         margin: 0;
       }
     }

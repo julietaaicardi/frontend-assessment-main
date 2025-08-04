@@ -24,33 +24,33 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
 .loading-row {
   .loading-cell {
-    padding: calc(#{vars.$spacing-xl} * 2);
+    padding: calc(#{$spacing-xl} * 2);
     text-align: center;
 
     .loading-content {
       @include mix.flex-center;
       flex-direction: column;
-      gap: vars.$spacing-md;
+      gap: $spacing-md;
 
       .loading-spinner {
         .spinner {
           width: 2rem;
           height: 2rem;
           border: 2px solid var(--shade-200);
-          border-top: 2px solid vars.$color-primary;
+          border-top: 2px solid $color-primary;
           border-radius: 50%;
           animation: spin 1s linear infinite;
         }
       }
 
       .loading-text {
-        color: vars.$color-text-secondary;
-        font-size: vars.$font-size-sm;
+        color: $color-text-secondary;
+        font-size: $font-size-sm;
         margin: 0;
       }
     }

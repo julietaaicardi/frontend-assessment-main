@@ -71,7 +71,7 @@ const handleBlur = (event: FocusEvent) => {
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
 .date-picker {
@@ -85,9 +85,9 @@ const handleBlur = (event: FocusEvent) => {
       @include mix.input-base;
       width: 100%;
       text-align: center;
-      padding: vars.$spacing-sm vars.$spacing-md;
+      padding: $spacing-sm $spacing-md;
       background-color: var(--shade-0);
-      font-size: vars.$font-size-sm;
+      font-size: $font-size-sm;
       cursor: pointer;
 
       &:focus {

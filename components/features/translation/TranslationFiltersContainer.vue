@@ -53,14 +53,14 @@ const handlePageSizeChange = (size: number) => {
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
 .translation-filters-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: vars.$spacing-lg;
+  gap: $spacing-lg;
   flex-wrap: wrap;
 
   @media (max-width: 639px) {
@@ -78,7 +78,7 @@ const handlePageSizeChange = (size: number) => {
 .filter-controls {
   display: flex;
   align-items: center;
-  gap: vars.$spacing-sm;
+  gap: $spacing-sm;
 }
 
 // Responsive adjustments

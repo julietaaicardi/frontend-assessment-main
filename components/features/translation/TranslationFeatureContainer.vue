@@ -42,11 +42,11 @@ watch(
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 
 .translation-feature {
   display: flex;
   flex-direction: column;
-  gap: vars.$spacing-xl;
+  gap: $spacing-xl;
 }
 </style>

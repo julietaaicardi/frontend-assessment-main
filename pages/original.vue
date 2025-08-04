@@ -103,8 +103,8 @@ body {
 code {
   font-family: monospace;
   font-size: 1em;
-  color: var(--primary-500);
-  background-color: var(--shade-100);
+      color: $color-primary;
+    background-color: $color-shade-100;
   padding: 0.25rem;
   border-radius: 0.25rem;
   -webkit-box-decoration-break: clone;
@@ -113,11 +113,11 @@ code {
 
 a {
   text-decoration-thickness: 2px;
-  text-decoration-color: var(--primary-200);
+  text-decoration-color: $color-primary-200;
 }
 
 a:visited {
-  color: var(--primary-500);
+  color: $color-primary;
 }
 
 img,
@@ -148,7 +148,7 @@ h6 {
 
 hr {
   border-style: solid;
-  border-color: var(--shade-200);
+  border-color: $color-shade-200;
   margin-block: 2.5rem 1rem;
 }
 

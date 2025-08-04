@@ -31,11 +31,11 @@ const props = withDefaults(defineProps<Props>(), {
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
 .table-cell {
-  padding: vars.$spacing-md;
+  padding: $spacing-md;
   vertical-align: middle;
 
   &.cell-left {
@@ -51,7 +51,7 @@ const props = withDefaults(defineProps<Props>(), {
   }
 
   .cell-content {
-    color: vars.$color-text-primary;
+    color: $color-text-primary;
     @include mix.text-truncate;
   }
 }
@@ -59,7 +59,7 @@ const props = withDefaults(defineProps<Props>(), {
 // Responsive adjustments
 @include mix.respond-to(md) {
   .table-cell {
-    padding: vars.$spacing-lg;
+    padding: $spacing-lg;
   }
 }
 </style>

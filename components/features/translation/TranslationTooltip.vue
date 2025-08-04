@@ -52,7 +52,7 @@ const allTranslations = computed(() => {
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
 .translation-tooltip {
@@ -63,12 +63,12 @@ const allTranslations = computed(() => {
 .translation-item {
   display: flex;
   align-items: center;
-  padding: vars.$spacing-xs 0;
+  padding: $spacing-xs 0;
 }
 
 .translation-text {
-  font-size: vars.$font-size-sm;
-  color: vars.$color-text-primary;
+  font-size: $font-size-sm;
+  color: $color-text-primary;
   line-height: 1.4;
   word-break: break-word;
   flex: 1;
@@ -78,12 +78,12 @@ const allTranslations = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: vars.$spacing-md;
+  padding: $spacing-md;
 }
 
 .no-translations-text {
-  font-size: vars.$font-size-sm;
-  color: vars.$color-text-secondary;
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
   font-style: italic;
 }
 </style>

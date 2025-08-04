@@ -53,27 +53,27 @@ const isNextDisabled = computed(() => !tableContext.hasNext)
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
 .table-pagination {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: vars.$spacing-lg;
-  padding: vars.$spacing-lg;
-  border-top: 1px solid vars.$color-border;
+  gap: $spacing-lg;
+  padding: $spacing-lg;
+  border-top: 1px solid $color-border;
 
   .pagination-info {
     .pagination-text {
-      font-size: vars.$font-size-sm;
-      color: vars.$color-text-secondary;
+      font-size: $font-size-sm;
+      color: $color-text-secondary;
     }
   }
 
   .pagination-controls {
     @include mix.flex-center;
-    gap: vars.$spacing-sm;
+    gap: $spacing-sm;
   }
 }
 </style>

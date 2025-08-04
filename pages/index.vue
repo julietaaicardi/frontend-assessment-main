@@ -8,6 +8,9 @@ useHead({
       content: 'Manage and view translation keys across different locales',
     },
   ],
+  htmlAttrs: {
+    'data-theme': 'light',
+  },
 })
 
 import { useRootStore } from '~/stores'
@@ -29,29 +32,29 @@ const hasError = computed(() => rootStore.hasError)
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 
 .translation-keys-page {
   display: flex;
   flex-direction: column;
-  gap: vars.$spacing-xl;
+  gap: $spacing-xl;
 }
 
 // Main Content
 .main-content {
   display: flex;
   flex-direction: column;
-  gap: vars.$spacing-lg;
+  gap: $spacing-lg;
 }
 
 .loading-state,
 .error-state {
   text-align: center;
-  padding: vars.$spacing-xl;
-  color: vars.$color-text-secondary;
+      padding: $spacing-xl;
+  color: $color-text-secondary;
 }
 
 .error-state {
-  color: vars.$color-error;
+  color: $color-error;
 }
 </style>

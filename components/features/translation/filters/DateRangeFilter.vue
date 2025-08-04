@@ -168,43 +168,40 @@ const closeDateFilter = () => {
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 @use '~/assets/scss/mixins' as mix;
 
 .date-inputs {
   display: flex;
   flex-direction: column;
-  gap: vars.$spacing-md;
+      gap: $spacing-md;
 
   .date-input-group {
     @include mix.flex-column;
-    gap: vars.$spacing-xs;
+    gap: $spacing-xs;
 
     .date-label {
-      font-size: vars.$font-size-xs;
-      font-weight: vars.$font-weight-medium;
-      color: vars.$color-text-secondary;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-medium;
+      color: $color-text-secondary;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
   }
 
   .error-message {
-    color: var(--error-500);
-    font-size: vars.$font-size-xs;
-    font-weight: vars.$font-weight-medium;
-    padding: vars.$spacing-xs vars.$spacing-sm;
-    background-color: var(--error-50);
-    border-radius: vars.$border-radius-sm;
-    border: 1px solid var(--error-200);
+    color: $color-error;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+          padding: $spacing-xs $spacing-sm;
   }
 
   .action-buttons {
     display: flex;
-    gap: vars.$spacing-sm;
+    gap: $spacing-sm;
     justify-content: flex-end;
-    padding-top: vars.$spacing-sm;
-    border-top: 1px solid var(--shade-200);
+    padding-top: $spacing-sm;
+    border-top: 1px solid $color-shade-200;
   }
 }
 
@@ -212,7 +209,7 @@ const closeDateFilter = () => {
 .date-inputs {
   .date-inputs-row {
     display: flex;
-    gap: vars.$spacing-md;
+    gap: $spacing-md;
     align-items: flex-end;
   }
 }

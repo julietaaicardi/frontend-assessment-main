@@ -49,7 +49,7 @@ const isEmpty = computed(
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 
 tbody {
   // Styles will be handled by individual row and cell components

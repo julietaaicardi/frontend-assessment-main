@@ -13,13 +13,13 @@ defineProps<Props>()
 </template>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/variables' as vars;
+@use '~/assets/scss/abstracts' as *;
 
 .section-title {
   .section-title-text {
-    font-size: vars.$font-size-2xl;
-    font-weight: vars.$font-weight-bold;
-    color: vars.$color-text-primary;
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
     margin: 0;
   }
 }

@@ -1,25 +1,30 @@
-@use 'variables' as vars;
+@use '../abstracts/colors' as *;
+@use '../abstracts/typography' as *;
+@use '../abstracts/spacing' as *;
+@use '../abstracts/breakpoints' as *;
+@use '../abstracts/shadows' as *;
+@use '../abstracts/border-radius' as *;
 
 // Responsive mixins
 @mixin respond-to($breakpoint) {
   @if $breakpoint == sm {
-    @media (min-width: vars.$breakpoint-sm) {
+    @media (min-width: $breakpoint-sm) {
       @content;
     }
   } @else if $breakpoint == md {
-    @media (min-width: vars.$breakpoint-md) {
+    @media (min-width: $breakpoint-md) {
       @content;
     }
   } @else if $breakpoint == lg {
-    @media (min-width: vars.$breakpoint-lg) {
+    @media (min-width: $breakpoint-lg) {
       @content;
     }
   } @else if $breakpoint == xl {
-    @media (min-width: vars.$breakpoint-xl) {
+    @media (min-width: $breakpoint-xl) {
       @content;
     }
   } @else if $breakpoint == 2xl {
-    @media (min-width: vars.$breakpoint-2xl) {
+    @media (min-width: $breakpoint-2xl) {
       @content;
     }
   }
@@ -27,10 +32,10 @@
 
 // Container mixin
 @mixin container {
-  max-width: vars.$container-max-width;
+  max-width: $container-max-width;
   margin: 0 auto;
-  padding-left: vars.$container-padding;
-  padding-right: vars.$container-padding;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
 }
 
 // Flex utilities
@@ -68,7 +73,7 @@
 // Interactive states
 @mixin focus-visible {
   &:focus-visible {
-    outline: 2px solid vars.$color-primary;
+    outline: 2px solid $color-primary;
     outline-offset: 2px;
   }
 }
@@ -80,7 +85,7 @@
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: vars.$shadow-lg;
+    box-shadow: $shadow-lg;
   }
 }
 
@@ -89,13 +94,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: vars.$spacing-sm vars.$spacing-md;
+  padding: $spacing-sm $spacing-md;
   border: 1px solid transparent;
-  border-radius: vars.$border-radius-md;
-  font-family: vars.$font-family-base;
-  font-size: vars.$font-size-sm;
-  font-weight: vars.$font-weight-medium;
-  line-height: vars.$line-height-tight;
+  border-radius: $border-radius-md;
+  font-family: $font-family-base;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-tight;
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -111,23 +116,23 @@
 // Input base styles
 @mixin input-base {
   width: 100%;
-  padding: vars.$spacing-sm vars.$spacing-md;
-  border: 1px solid vars.$color-border;
-  border-radius: vars.$border-radius-md;
-  font-family: vars.$font-family-base;
-  font-size: vars.$font-size-sm;
-  line-height: vars.$line-height-normal;
-  background-color: vars.$color-background;
-  color: vars.$color-text-primary;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-md;
+  font-family: $font-family-base;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+  background-color: $color-background;
+  color: $color-text-primary;
   transition: border-color 0.2s ease-in-out;
 
   &::placeholder {
-    color: vars.$color-text-secondary;
+    color: $color-text-secondary;
   }
 
   &:focus {
     outline: none;
-    border-color: vars.$color-primary;
+    border-color: $color-primary;
   }
 
   @include focus-visible;
@@ -137,11 +142,11 @@
 @mixin grid-auto-fit($min-width: 250px) {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
-  gap: vars.$spacing-md;
+  gap: $spacing-md;
 }
 
 @mixin grid-auto-fill($min-width: 250px) {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax($min-width, 1fr));
-  gap: vars.$spacing-md;
+  gap: $spacing-md;
 }
