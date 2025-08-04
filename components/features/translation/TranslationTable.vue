@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import type { TranslationKey, Column } from '~/types'
-import { useTranslationStore } from '~/stores'
+import { useTranslationCoordination } from '~/stores'
 import { formatRelativeTime } from '~/utils/date'
 import { formatTranslationWithFlag } from '~/utils/language'
-import TranslationTooltip from '~/components/features/TranslationTooltip.vue'
+import TranslationTooltip from '~/components/features/translation/TranslationTooltip.vue'
 
-const translationStore = useTranslationStore()
+const { tableStore, paginationInfo, updatePage } = useTranslationCoordination()
 
 interface Props {
   pagination?: boolean
@@ -36,7 +36,7 @@ const translationColumns: Column[] = [
 
 // Business-specific data mapping from store
 const tableData = computed(() => 
-  translationStore.keys.map((item: any) => {
+  tableStore.keys.map((item: any) => {
     const firstTranslation = item.translations?.length > 0 ? item.translations[0] : null
     return {
       key: item.key,
@@ -48,20 +48,15 @@ const tableData = computed(() =>
   })
 )
 
-// Use store pagination getters
-const paginationInfo = computed(() => translationStore.paginationInfo)
-
 const handlePrevPage = () => {
-  if (translationStore.hasPreviousPage) {
-    translationStore.updatePage(translationStore.filters.page - 1)
-    translationStore.fetchKeys()
+  if (paginationInfo.value.hasPrevious) {
+    updatePage(paginationInfo.value.currentPage - 1)
   }
 }
 
 const handleNextPage = () => {
-  if (translationStore.hasNextPage) {
-    translationStore.updatePage(translationStore.filters.page + 1)
-    translationStore.fetchKeys()
+  if (paginationInfo.value.hasNext) {
+    updatePage(paginationInfo.value.currentPage + 1)
   }
 }
 </script>

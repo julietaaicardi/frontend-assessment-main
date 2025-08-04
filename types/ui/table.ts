@@ -33,6 +33,17 @@ export interface TableProps {
 }
 
 /**
+ * Pagination state for UI components
+ */
+export interface PaginationState {
+  currentPage: number
+  totalPages: number
+  startIndex: number
+  endIndex: number
+  totalItems: number
+}
+
+/**
  * Table context for child components
  */
 export interface TableContext {

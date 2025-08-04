@@ -10,25 +10,22 @@ useHead({
   ],
 });
 
-import { useTranslationStore, useRootStore } from '~/stores'
+import { useTranslationCoordination, useRootStore } from '~/stores'
 
-const translationStore = useTranslationStore()
-const rootStore = useRootStore()
+const { tableStore, rootStore, fetchKeys } = useTranslationCoordination()
 
 // Initialize data on page load
 onMounted(async () => {
-  rootStore.setLoading(true)
   try {
-    await translationStore.fetchKeys()
+    await fetchKeys()
   } catch (error) {
-    rootStore.setError(error instanceof Error ? error.message : 'Failed to fetch translation keys')
-  } finally {
-    rootStore.setLoading(false)
+    // Error is already handled in the coordination composable
+    console.error('Failed to initialize translation keys:', error)
   }
 })
 
 // Computed properties from stores
-const totalKeys = computed(() => translationStore.totalCount || 15000)
+const totalKeys = computed(() => tableStore.totalCount || 15000)
 const isLoading = computed(() => rootStore.isLoading)
 const hasError = computed(() => rootStore.hasError)
 </script>

@@ -60,26 +60,4 @@ export interface TranslationKey {
   key: string
   translation: string
   updatedAt: string
-}
-
-/**
- * Pagination state for UI components
- */
-export interface PaginationState {
-  currentPage: number
-  totalPages: number
-  startIndex: number
-  endIndex: number
-  totalItems: number
-}
-
-/**
- * Filter state for translation search
- */
-export interface FilterState {
-  searchValue: string
-  dateFrom: string
-  dateTo: string
-  pageSize: number
-  page: number
 } 

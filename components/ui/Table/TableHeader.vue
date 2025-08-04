@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { Column } from '~/types/ui/table'
+import type { TableContext } from './types'
 
 // Inject table context
-const tableContext = inject('tableContext')
+const tableContext = inject<TableContext>('tableContext')
 
 if (!tableContext) {
   throw new Error('TableHeader must be used within a Table component')

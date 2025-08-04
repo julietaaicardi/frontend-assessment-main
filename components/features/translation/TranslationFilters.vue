@@ -1,34 +1,30 @@
 <script lang="ts" setup>
-import { useTranslationStore } from '~/stores'
+import { useTranslationCoordination } from '~/stores'
 
-const translationStore = useTranslationStore()
+const { filtersStore, updateSearchValue, updateDateRange } = useTranslationCoordination()
 
 // Popover state (local component state)
 const showDateFilter = ref(false)
 const filterButtonRef = ref<HTMLElement>()
 
 // Computed properties for reactive store values
-const searchValue = computed(() => translationStore.filters.searchValue)
-const dateFrom = computed(() => translationStore.filters.dateFrom)
-const dateTo = computed(() => translationStore.filters.dateTo)
-const pageSize = computed(() => translationStore.filters.pageSize)
+const searchValue = computed(() => filtersStore.searchValue)
+const dateFrom = computed(() => filtersStore.dateFrom)
+const dateTo = computed(() => filtersStore.dateTo)
+const pageSize = computed(() => filtersStore.pageSize)
 
 const handleSearchChange = (value: string) => {
-  translationStore.updateSearchValue(value)
-  // Trigger fetch with new filters
-  translationStore.fetchKeys()
+  updateSearchValue(value)
 }
 
 const handleDateFromChange = (value: string) => {
-  translationStore.updateDateRange(value, dateTo.value)
+  updateDateRange(value, dateTo.value)
 }
 
 const handleDateToChange = (value: string) => {
-  translationStore.updateDateRange(dateFrom.value, value)
+  updateDateRange(dateFrom.value, value)
   // Automatically close the popover and apply the filter when To date is selected
   closeDateFilter()
-  // Trigger fetch with new filters
-  translationStore.fetchKeys()
 }
 
 const handleFilterClick = (event: MouseEvent) => {

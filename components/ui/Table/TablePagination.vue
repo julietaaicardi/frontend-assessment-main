@@ -1,6 +1,8 @@
 <script lang="ts" setup>
+import type { TableContext } from './types'
+
 // Inject table context
-const tableContext = inject('tableContext')
+const tableContext = inject<TableContext>('tableContext')
 
 if (!tableContext) {
   throw new Error('TablePagination must be used within a Table component')
