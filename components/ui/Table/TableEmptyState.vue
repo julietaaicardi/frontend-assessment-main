@@ -4,7 +4,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  message: 'No data available'
+  message: 'No data available',
 })
 </script>
 
@@ -26,20 +26,20 @@ const props = withDefaults(defineProps<Props>(), {
 @use '~/assets/scss/mixins' as mix;
 
 .empty-state-row {
-      .empty-state-cell {
-      padding: calc(#{vars.$spacing-xl} * 2);
-      text-align: center;
-    
+  .empty-state-cell {
+    padding: calc(#{vars.$spacing-xl} * 2);
+    text-align: center;
+
     .empty-state-content {
       @include mix.flex-center;
       flex-direction: column;
       gap: vars.$spacing-md;
-      
+
       .empty-state-icon {
         font-size: 2rem;
         opacity: 0.5;
       }
-      
+
       .empty-state-text {
         color: vars.$color-text-secondary;
         font-size: vars.$font-size-sm;
@@ -48,4 +48,4 @@ const props = withDefaults(defineProps<Props>(), {
     }
   }
 }
-</style> 
+</style>

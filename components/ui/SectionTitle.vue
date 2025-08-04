@@ -23,4 +23,4 @@ defineProps<Props>()
     margin: 0;
   }
 }
-</style> 
+</style>

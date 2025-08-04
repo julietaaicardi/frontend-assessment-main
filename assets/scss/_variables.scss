@@ -8,7 +8,9 @@ $color-primary-light: var(--primary-100);
 $color-error: var(--red-500);
 
 // Typography
-$font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+$font-family-base:
+  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+  Cantarell, sans-serif;
 $font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
 $font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
 $font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
@@ -42,8 +44,12 @@ $border-radius-xl: 1rem;
 
 // Shadows
 $shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-md:
+  0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg:
+  0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
 // Breakpoints
 $breakpoint-sm: 640px;
@@ -54,4 +60,4 @@ $breakpoint-2xl: 1536px;
 
 // Container max-widths
 $container-max-width: 1200px;
-$container-padding: clamp(1rem, 4vw, 2rem); 
+$container-padding: clamp(1rem, 4vw, 2rem);

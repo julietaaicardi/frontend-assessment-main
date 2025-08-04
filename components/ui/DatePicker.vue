@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<Props>(), {
   id: undefined,
   range: false,
   minDate: undefined,
-  maxDate: undefined
+  maxDate: undefined,
 })
 
 const emit = defineEmits<Emits>()
@@ -76,11 +76,11 @@ const handleBlur = (event: FocusEvent) => {
 
 .date-picker {
   position: relative;
-  
+
   &__input {
     width: 100%;
     text-align: center;
-    
+
     :deep(.dp__input) {
       @include mix.input-base;
       width: 100%;
@@ -89,62 +89,62 @@ const handleBlur = (event: FocusEvent) => {
       background-color: var(--shade-0);
       font-size: vars.$font-size-sm;
       cursor: pointer;
-      
+
       &:focus {
         outline: none;
         border-color: var(--primary-500);
         box-shadow: 0 0 0 2px var(--primary-100);
       }
-      
+
       &:disabled {
         opacity: 0.5;
         cursor: not-allowed;
         background-color: var(--shade-50);
       }
     }
-    
+
     // Remove calendar icon
     :deep(.dp__input_icon) {
       display: none;
     }
-    
+
     // Hide the calendar icon container
     :deep(.dp__input_wrap) {
       position: relative;
-      
+
       &::after {
         display: none;
       }
     }
-    
+
     // Ensure calendar dropdown is visible
     :deep(.dp__main) {
       z-index: 99999;
       position: fixed;
     }
-    
+
     :deep(.dp__outer_menu) {
       z-index: 99999;
       position: fixed;
     }
-    
+
     :deep(.dp__menu) {
       z-index: 99999;
       position: fixed;
     }
-    
+
     :deep(.dp__calendar) {
       z-index: 99999;
       position: fixed;
     }
-    
+
     :deep(.dp__calendar_header) {
       z-index: 99999;
     }
-    
+
     :deep(.dp__calendar_row) {
       z-index: 99999;
     }
   }
 }
-</style> 
+</style>

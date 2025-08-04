@@ -61,4 +61,4 @@ export interface TableContext {
   handlePrevPage: () => void
   handleNextPage: () => void
   handlePageChange: (page: number) => void
-} 
+}

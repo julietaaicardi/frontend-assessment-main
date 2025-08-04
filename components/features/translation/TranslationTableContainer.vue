@@ -12,7 +12,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  pagination: false
+  pagination: false,
 })
 
 // Business-specific column definitions
@@ -20,30 +20,36 @@ const translationColumns: Column[] = [
   {
     key: 'key',
     label: 'Key',
-    align: 'left'
+    align: 'left',
   },
   {
     key: 'translation',
-    label: 'Translation', 
-    align: 'left'
+    label: 'Translation',
+    align: 'left',
   },
   {
     key: 'updatedAt',
     label: 'Updated At',
-    align: 'right'
-  }
+    align: 'right',
+  },
 ]
 
 // Business-specific data mapping from store
-const tableData = computed(() => 
+const tableData = computed(() =>
   tableStore.keys.map((item: any) => {
-    const firstTranslation = item.translations?.length > 0 ? item.translations[0] : null
+    const firstTranslation =
+      item.translations?.length > 0 ? item.translations[0] : null
     return {
       key: item.key,
-      translation: firstTranslation ? formatTranslationWithFlag(firstTranslation.value, firstTranslation.languages_code) : '-',
+      translation: firstTranslation
+        ? formatTranslationWithFlag(
+            firstTranslation.value,
+            firstTranslation.languages_code
+          )
+        : '-',
       updatedAt: formatRelativeTime(item.updatedAt || item.createdAt),
       // Store the original item for tooltip
-      originalItem: item
+      originalItem: item,
     }
   })
 )
@@ -70,4 +76,4 @@ const handleNextPage = () => {
     @prev-page="handlePrevPage"
     @next-page="handleNextPage"
   />
-</template> 
+</template>

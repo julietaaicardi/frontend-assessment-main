@@ -20,16 +20,19 @@ types/
 ## Type Categories
 
 ### Domain Types (`domain/`)
+
 - **Purpose**: Business logic and domain entities
 - **Scope**: Application-wide domain concepts
 - **Examples**: `TranslationKey`, `DirectusTranslation`, `PaginationState`
 
 ### API Types (`api/`)
+
 - **Purpose**: API communication and data transfer
 - **Scope**: Request/response structures and error handling
 - **Examples**: `TranslationKeysQueryParams`, `TranslationKeysResponse`, `ApiError`
 
 ### UI Types (`ui/`)
+
 - **Purpose**: UI component interfaces and props
 - **Scope**: Component-specific types and UI state
 - **Examples**: `Column`, `Row`, `TableProps`
@@ -39,11 +42,13 @@ types/
 ### Importing Types
 
 Use the barrel export for most cases:
+
 ```typescript
 import type { TranslationKey, Column, ApiError } from '~/types'
 ```
 
 For specific categories:
+
 ```typescript
 import type { TranslationKeysQueryParams } from '~/types/api/requests'
 import type { DirectusTranslation } from '~/types/domain/translation'
@@ -64,4 +69,4 @@ import type { TableProps } from '~/types/ui/table'
 - **Export types** that are used across multiple modules
 - **Keep internal types** private to their modules
 - Use **descriptive names** that indicate the type's purpose
-- Add **JSDoc comments** for complex types 
+- Add **JSDoc comments** for complex types

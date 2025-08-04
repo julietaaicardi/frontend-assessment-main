@@ -11,4 +11,4 @@ export interface TranslationKeysQueryParams {
   dateTo?: string
   page?: number
   pageSize?: number
-} 
+}

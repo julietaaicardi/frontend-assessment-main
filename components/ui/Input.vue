@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
   disabled: false,
   readonly: false,
   ariaLabel: undefined,
-  id: undefined
+  id: undefined,
 })
 
 const emit = defineEmits<Emits>()
@@ -63,16 +63,16 @@ const handleBlur = (event: FocusEvent) => {
 
 .input {
   @include mix.input-base;
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     background-color: var(--shade-50);
   }
-  
+
   &:readonly {
     background-color: var(--shade-50);
     cursor: default;
   }
 }
-</style> 
+</style>

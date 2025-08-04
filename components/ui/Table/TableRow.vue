@@ -7,7 +7,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  rowIndex: 0
+  rowIndex: 0,
 })
 </script>
 
@@ -23,13 +23,13 @@ const props = withDefaults(defineProps<Props>(), {
 .table-row {
   border-bottom: 1px solid var(--shade-100);
   transition: background-color 0.2s ease-in-out;
-  
+
   &:hover {
     background-color: var(--shade-25);
   }
-  
+
   &:last-child {
     border-bottom: none;
   }
 }
-</style> 
+</style>

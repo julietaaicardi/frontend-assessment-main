@@ -4,7 +4,8 @@ import SearchFilter from './filters/SearchFilter.vue'
 import DateRangeFilter from './filters/DateRangeFilter.vue'
 import PageSizeFilter from './filters/PageSizeFilter.vue'
 
-const { filtersStore, updateSearchValue, updateDateRange, updatePageSize } = useTranslationCoordination()
+const { filtersStore, updateSearchValue, updateDateRange, updatePageSize } =
+  useTranslationCoordination()
 
 // Computed properties for reactive store values
 const searchValue = computed(() => filtersStore.searchValue)
@@ -42,7 +43,7 @@ const handlePageSizeChange = (size: number) => {
         :date-to="dateTo"
         @update:date-range="handleDateRangeChange"
       />
-      
+
       <PageSizeFilter
         :model-value="pageSize"
         @update:model-value="handlePageSizeChange"
@@ -61,7 +62,7 @@ const handlePageSizeChange = (size: number) => {
   justify-content: space-between;
   gap: vars.$spacing-lg;
   flex-wrap: wrap;
-  
+
   @media (max-width: 639px) {
     flex-direction: column;
     align-items: stretch;
@@ -86,4 +87,4 @@ const handlePageSizeChange = (size: number) => {
     max-width: none;
   }
 }
-</style> 
+</style>

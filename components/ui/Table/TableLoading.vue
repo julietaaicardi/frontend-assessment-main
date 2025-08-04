@@ -4,7 +4,7 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  message: 'Loading...'
+  message: 'Loading...',
 })
 </script>
 
@@ -28,15 +28,15 @@ const props = withDefaults(defineProps<Props>(), {
 @use '~/assets/scss/mixins' as mix;
 
 .loading-row {
-      .loading-cell {
-      padding: calc(#{vars.$spacing-xl} * 2);
-      text-align: center;
-    
+  .loading-cell {
+    padding: calc(#{vars.$spacing-xl} * 2);
+    text-align: center;
+
     .loading-content {
       @include mix.flex-center;
       flex-direction: column;
       gap: vars.$spacing-md;
-      
+
       .loading-spinner {
         .spinner {
           width: 2rem;
@@ -47,7 +47,7 @@ const props = withDefaults(defineProps<Props>(), {
           animation: spin 1s linear infinite;
         }
       }
-      
+
       .loading-text {
         color: vars.$color-text-secondary;
         font-size: vars.$font-size-sm;
@@ -58,7 +58,11 @@ const props = withDefaults(defineProps<Props>(), {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-</style> 
+</style>

@@ -15,4 +15,4 @@ export * from './domain/translation'
 export * from './ui/table'
 
 // Store types
-export * from './stores/translation' 
+export * from './stores/translation'

@@ -11,7 +11,7 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   position: 'top',
-  width: 'md'
+  width: 'md',
 })
 
 // Get all translations for this key
@@ -25,19 +25,24 @@ const allTranslations = computed(() => {
     <template #trigger>
       <slot name="trigger" />
     </template>
-    
+
     <div v-if="allTranslations.length > 0" class="translation-tooltip">
-      <div 
-        v-for="translation in allTranslations" 
+      <div
+        v-for="translation in allTranslations"
         :key="`${translation.languages_code}-${translation.value}`"
         class="translation-item"
       >
         <span class="translation-text">
-          {{ formatTranslationWithFlag(translation.value, translation.languages_code) }}
+          {{
+            formatTranslationWithFlag(
+              translation.value,
+              translation.languages_code
+            )
+          }}
         </span>
       </div>
     </div>
-    
+
     <div v-else class="translation-tooltip">
       <div class="no-translations">
         <span class="no-translations-text">No translations available</span>
@@ -81,4 +86,4 @@ const allTranslations = computed(() => {
   color: vars.$color-text-secondary;
   font-style: italic;
 }
-</style> 
+</style>

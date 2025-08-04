@@ -11,8 +11,11 @@ export const useTranslationCoordination = () => {
   const paginationInfo = computed(() => {
     const totalPages = Math.ceil(tableStore.totalCount / filtersStore.pageSize)
     const startIndex = (filtersStore.page - 1) * filtersStore.pageSize + 1
-    const endIndex = Math.min(filtersStore.page * filtersStore.pageSize, tableStore.totalCount)
-    
+    const endIndex = Math.min(
+      filtersStore.page * filtersStore.pageSize,
+      tableStore.totalCount
+    )
+
     return {
       currentPage: filtersStore.page,
       totalPages,
@@ -20,12 +23,15 @@ export const useTranslationCoordination = () => {
       startIndex,
       endIndex,
       hasNext: filtersStore.page < totalPages,
-      hasPrevious: filtersStore.page > 1
+      hasPrevious: filtersStore.page > 1,
     }
   })
 
   const hasNextPage = computed(() => {
-    return filtersStore.page < Math.ceil(tableStore.totalCount / filtersStore.pageSize)
+    return (
+      filtersStore.page <
+      Math.ceil(tableStore.totalCount / filtersStore.pageSize)
+    )
   })
 
   const hasPreviousPage = computed(() => {
@@ -47,10 +53,13 @@ export const useTranslationCoordination = () => {
         dateFrom: filtersStore.dateFrom,
         dateTo: filtersStore.dateTo,
         page: filtersStore.page,
-        pageSize: filtersStore.pageSize
+        pageSize: filtersStore.pageSize,
       })
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to fetch translation keys'
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : 'Failed to fetch translation keys'
       rootStore.setError(errorMessage)
       throw error
     } finally {
@@ -83,19 +92,19 @@ export const useTranslationCoordination = () => {
     tableStore,
     filtersStore,
     rootStore,
-    
+
     // Computed properties
     paginationInfo,
     hasNextPage,
     hasPreviousPage,
     totalPages,
-    
+
     // Actions
     fetchKeys,
     updateSearchValue,
     updateDateRange,
     updatePageSize,
     updatePage,
-    clearFilters
+    clearFilters,
   }
-} 
+}

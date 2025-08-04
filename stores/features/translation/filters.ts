@@ -7,7 +7,7 @@ export const useTranslationFiltersStore = defineStore('translationFilters', {
     dateFrom: '',
     dateTo: '',
     pageSize: 10,
-    page: 1
+    page: 1,
   }),
 
   actions: {
@@ -40,6 +40,6 @@ export const useTranslationFiltersStore = defineStore('translationFilters', {
       this.dateTo = ''
       this.pageSize = 10
       this.page = 1
-    }
-  }
-}) 
+    },
+  },
+})

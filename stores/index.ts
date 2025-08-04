@@ -2,4 +2,4 @@
 export { useRootStore } from './root'
 
 // Feature stores
-export * from './features/translation' 
+export * from './features/translation'

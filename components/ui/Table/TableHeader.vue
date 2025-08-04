@@ -14,10 +14,10 @@ const { columns } = tableContext
 <template>
   <thead>
     <tr>
-      <th 
-        v-for="column in columns" 
+      <th
+        v-for="column in columns"
         :key="column.key"
-        scope="col" 
+        scope="col"
         class="table-header"
         :class="`header-${column.align || 'left'}`"
         :style="column.width ? { width: column.width } : {}"
@@ -42,25 +42,25 @@ const { columns } = tableContext
   color: vars.$color-text-secondary;
   letter-spacing: 0.05em;
   border-bottom: 1px solid vars.$color-border;
-  
+
   &.header-left {
     text-align: left;
   }
-  
+
   &.header-center {
     text-align: center;
   }
-  
+
   &.header-right {
     text-align: right;
   }
-  
+
   &:first-child {
     border-top-left-radius: vars.$border-radius-lg;
   }
-  
+
   &:last-child {
     border-top-right-radius: vars.$border-radius-lg;
   }
 }
-</style> 
+</style>

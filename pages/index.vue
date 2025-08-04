@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 // Page metadata
 useHead({
-  title: "Translation Keys Manager",
+  title: 'Translation Keys Manager',
   meta: [
     {
-      name: "description",
-      content: "Manage and view translation keys across different locales",
+      name: 'description',
+      content: 'Manage and view translation keys across different locales',
     },
   ],
-});
+})
 
 import { useRootStore } from '~/stores'
 import TranslationFeatureContainer from '~/components/features/translation/TranslationFeatureContainer.vue'
@@ -29,7 +29,7 @@ const hasError = computed(() => rootStore.hasError)
 </template>
 
 <style lang="scss" scoped>
-@use "~/assets/scss/variables" as vars;
+@use '~/assets/scss/variables' as vars;
 
 .translation-keys-page {
   display: flex;

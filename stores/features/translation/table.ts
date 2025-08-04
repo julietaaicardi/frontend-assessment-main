@@ -1,6 +1,9 @@
 import { defineStore } from 'pinia'
 import type { FilterState } from '~/types/stores/translation'
-import type { DirectusTranslation, TranslationKey } from '~/types/domain/translation'
+import type {
+  DirectusTranslation,
+  TranslationKey,
+} from '~/types/domain/translation'
 import type { TranslationKeysResponse } from '~/types/api/responses'
 
 export interface TranslationTableState {
@@ -11,11 +14,11 @@ export interface TranslationTableState {
 export const useTranslationTableStore = defineStore('translationTable', {
   state: (): TranslationTableState => ({
     keys: [],
-    totalCount: 0
+    totalCount: 0,
   }),
 
   getters: {
-    isEmpty: (state) => state.keys.length === 0
+    isEmpty: state => state.keys.length === 0,
   },
 
   actions: {
@@ -36,9 +39,9 @@ export const useTranslationTableStore = defineStore('translationTable', {
           dateFrom: filters.dateFrom,
           dateTo: filters.dateTo,
           page: filters.page,
-          pageSize: filters.pageSize
+          pageSize: filters.pageSize,
         })
-        
+
         this.setKeys(response.data)
         this.setMeta(response.meta?.filter_count ?? 0)
 
@@ -47,6 +50,6 @@ export const useTranslationTableStore = defineStore('translationTable', {
         console.error('Failed to fetch translation keys:', error)
         throw error
       }
-    }
-  }
-}) 
+    },
+  },
+})

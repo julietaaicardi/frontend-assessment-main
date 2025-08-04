@@ -3,7 +3,11 @@
     <Header class="app-header">
       <div class="header-content">
         <div class="logo">
-          <img src="~/assets/images/logo_small.svg" alt="Altura Logo" class="logo-image" />
+          <img
+            src="~/assets/images/logo_small.svg"
+            alt="Altura Logo"
+            class="logo-image"
+          />
         </div>
       </div>
     </Header>
@@ -19,9 +23,13 @@
 useHead({
   title: 'Translation Keys Manager',
   meta: [
-    { name: 'description', content: 'Manage translation keys and their values across different locales' },
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' }
-  ]
+    {
+      name: 'description',
+      content:
+        'Manage translation keys and their values across different locales',
+    },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+  ],
 })
 </script>
 
@@ -54,7 +62,7 @@ useHead({
 
 .logo {
   @include mix.flex-center;
-  
+
   .logo-image {
     height: 2rem;
     width: auto;
@@ -64,7 +72,7 @@ useHead({
 .nav {
   @include mix.flex-center;
   gap: vars.$spacing-lg;
-  
+
   .nav-placeholder {
     color: vars.$color-text-secondary;
     font-size: vars.$font-size-sm;
@@ -83,7 +91,7 @@ useHead({
   .header-content {
     gap: vars.$spacing-lg;
   }
-  
+
   .nav {
     gap: vars.$spacing-xl;
   }
@@ -93,9 +101,9 @@ useHead({
   .app-header {
     padding: vars.$spacing-lg vars.$spacing-xl;
   }
-  
+
   .main {
     padding: vars.$spacing-2xl vars.$spacing-xl;
   }
 }
-</style> 
+</style>

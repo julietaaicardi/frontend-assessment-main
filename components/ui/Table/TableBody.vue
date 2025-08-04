@@ -1,19 +1,19 @@
 <script lang="ts" setup>
-import type { Row } from "~/types/ui/table";
+import type { Row } from '~/types/ui/table'
 
 // Inject table context
-const tableContext = inject("tableContext") as any;
+const tableContext = inject('tableContext') as any
 
 if (!tableContext) {
-  throw new Error("TableBody must be used within a Table component");
+  throw new Error('TableBody must be used within a Table component')
 }
 
-const { data, loading, emptyMessage, columns, rowKey } = tableContext;
+const { data, loading, emptyMessage, columns, rowKey } = tableContext
 
 // Check if data is empty - data is now a computed ref
 const isEmpty = computed(
   () => !loading.value && (!data.value || data.value.length === 0)
-);
+)
 </script>
 
 <template>
@@ -49,7 +49,7 @@ const isEmpty = computed(
 </template>
 
 <style lang="scss" scoped>
-@use "~/assets/scss/variables" as vars;
+@use '~/assets/scss/variables' as vars;
 
 tbody {
   // Styles will be handled by individual row and cell components

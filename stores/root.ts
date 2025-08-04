@@ -8,11 +8,11 @@ export interface RootState {
 export const useRootStore = defineStore('root', {
   state: (): RootState => ({
     isLoading: false,
-    error: null
+    error: null,
   }),
 
   getters: {
-    hasError: (state) => state.error !== null
+    hasError: state => state.error !== null,
   },
 
   actions: {
@@ -27,5 +27,5 @@ export const useRootStore = defineStore('root', {
     clearError() {
       this.error = null
     },
-  }
-}) 
+  },
+})

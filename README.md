@@ -28,8 +28,9 @@ frontend-assessment-main/
 ## Features
 
 ### Current Implementation
+
 - **Responsive Layout**: Mobile-first design with breakpoint-based responsive behavior
-- **Modern SCSS Architecture**: 
+- **Modern SCSS Architecture**:
   - CSS custom properties for theming
   - Responsive mixins using `clamp()`, `min()`, `max()`
   - Semantic variable naming
@@ -37,7 +38,8 @@ frontend-assessment-main/
 - **TypeScript**: Full TypeScript support with proper type definitions
 
 ### Page Layout Structure
-1. **Header Section**: 
+
+1. **Header Section**:
    - Search bar for filtering keys
    - Filter controls (Updated at, Page size)
    - Date range filter with From/To inputs
@@ -50,6 +52,7 @@ frontend-assessment-main/
    - Navigation arrows (Previous/Next)
 
 ### Responsive Behavior
+
 - **Large screens**: Filters display in one row
 - **Small screens**: Filters stack vertically
 - **Table**: Responsive with proper text truncation
@@ -65,6 +68,7 @@ frontend-assessment-main/
 ## Environment Setup
 
 1. **Copy environment file**:
+
    ```bash
    cp .env.example .env
    ```
@@ -77,11 +81,13 @@ frontend-assessment-main/
 ## Development Setup
 
 1. **Install dependencies**:
+
    ```bash
    npm install
    ```
 
 2. **Start development server**:
+
    ```bash
    npm run dev
    ```

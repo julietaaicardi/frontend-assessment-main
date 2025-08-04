@@ -21,7 +21,7 @@ const localDateFrom = ref('')
 const localDateTo = ref('')
 
 // Initialize local state when popover opens
-watch(showDateFilter, (isVisible) => {
+watch(showDateFilter, isVisible => {
   if (isVisible) {
     localDateFrom.value = props.dateFrom
     localDateTo.value = props.dateTo
@@ -35,7 +35,7 @@ const formatDate = (dateString: string): string => {
   return date.toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
-    year: 'numeric'
+    year: 'numeric',
   })
 }
 
@@ -119,7 +119,7 @@ const closeDateFilter = () => {
         @click="handleFilterClick"
       />
     </template>
-    
+
     <div class="date-inputs">
       <div class="date-inputs-row">
         <div class="date-input-group">
@@ -127,7 +127,9 @@ const closeDateFilter = () => {
           <DatePicker
             id="date-from"
             :model-value="localDateFrom ? new Date(localDateFrom) : null"
-            :placeholder="localDateFrom ? formatDate(localDateFrom) : 'Select start date'"
+            :placeholder="
+              localDateFrom ? formatDate(localDateFrom) : 'Select start date'
+            "
             aria-label="Date from"
             @update:model-value="handleDateFromChange"
           />
@@ -137,18 +139,20 @@ const closeDateFilter = () => {
           <DatePicker
             id="date-to"
             :model-value="localDateTo ? new Date(localDateTo) : null"
-            :placeholder="localDateTo ? formatDate(localDateTo) : 'Select end date'"
+            :placeholder="
+              localDateTo ? formatDate(localDateTo) : 'Select end date'
+            "
             aria-label="Date to"
             @update:model-value="handleDateToChange"
           />
         </div>
       </div>
-      
+
       <!-- Error message -->
       <div v-if="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
-      
+
       <!-- Action buttons -->
       <div class="action-buttons">
         <Button
@@ -171,11 +175,11 @@ const closeDateFilter = () => {
   display: flex;
   flex-direction: column;
   gap: vars.$spacing-md;
-  
+
   .date-input-group {
     @include mix.flex-column;
     gap: vars.$spacing-xs;
-    
+
     .date-label {
       font-size: vars.$font-size-xs;
       font-weight: vars.$font-weight-medium;
@@ -184,7 +188,7 @@ const closeDateFilter = () => {
       letter-spacing: 0.05em;
     }
   }
-  
+
   .error-message {
     color: var(--error-500);
     font-size: vars.$font-size-xs;
@@ -194,7 +198,7 @@ const closeDateFilter = () => {
     border-radius: vars.$border-radius-sm;
     border: 1px solid var(--error-200);
   }
-  
+
   .action-buttons {
     display: flex;
     gap: vars.$spacing-sm;
@@ -212,4 +216,4 @@ const closeDateFilter = () => {
     align-items: flex-end;
   }
 }
-</style> 
+</style>

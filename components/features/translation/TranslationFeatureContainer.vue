@@ -24,7 +24,7 @@ watch(
     () => filtersStore.dateFrom,
     () => filtersStore.dateTo,
     () => filtersStore.pageSize,
-    () => filtersStore.page
+    () => filtersStore.page,
   ],
   async () => {
     await fetchKeys()
@@ -49,4 +49,4 @@ watch(
   flex-direction: column;
   gap: vars.$spacing-xl;
 }
-</style> 
+</style>

@@ -13,4 +13,4 @@ export interface TranslationKeysResponse {
     total_count?: number
     filter_count?: number
   }
-} 
+}

@@ -1,6 +1,10 @@
 import { ref, readonly } from 'vue'
 import { translationKeysService } from './api/services/translationKeys'
-import type { TranslationKeysQueryParams, TranslationKeysResponse, ApiError } from './api/types'
+import type {
+  TranslationKeysQueryParams,
+  TranslationKeysResponse,
+  ApiError,
+} from './api/types'
 
 /**
  * Composable for fetching translation keys from the API
@@ -23,7 +27,7 @@ export const useTranslationKeysApi = () => {
   ): Promise<TranslationKeysResponse> => {
     loading.value = true
     error.value = null
-    
+
     try {
       const response = await translationKeysService.fetch(params)
       data.value = response
@@ -42,4 +46,4 @@ export const useTranslationKeysApi = () => {
     data: readonly(data),
     error: readonly(error),
   }
-} 
+}

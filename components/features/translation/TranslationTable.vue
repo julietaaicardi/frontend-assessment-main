@@ -20,12 +20,12 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  pagination: false
+  pagination: false,
 })
 
 const emit = defineEmits<{
-  'prevPage': []
-  'nextPage': []
+  prevPage: []
+  nextPage: []
 }>()
 
 const handlePrevPage = () => {
@@ -38,22 +38,26 @@ const handleNextPage = () => {
 </script>
 
 <template>
-  <Table 
+  <Table
     :columns="columns"
     :data="data"
     row-key="key"
     :pagination="pagination"
-    :external-pagination="paginationInfo ? {
-      currentPage: paginationInfo.currentPage,
-      totalPages: paginationInfo.totalPages,
-      startIndex: paginationInfo.startIndex,
-      endIndex: paginationInfo.endIndex,
-      totalItems: paginationInfo.totalItems,
-      hasNext: paginationInfo.hasNext,
-      hasPrevious: paginationInfo.hasPrevious,
-      handlePrevPage,
-      handleNextPage
-    } : undefined"
+    :external-pagination="
+      paginationInfo
+        ? {
+            currentPage: paginationInfo.currentPage,
+            totalPages: paginationInfo.totalPages,
+            startIndex: paginationInfo.startIndex,
+            endIndex: paginationInfo.endIndex,
+            totalItems: paginationInfo.totalItems,
+            hasNext: paginationInfo.hasNext,
+            hasPrevious: paginationInfo.hasPrevious,
+            handlePrevPage,
+            handleNextPage,
+          }
+        : undefined
+    "
   >
     <table class="data-table" role="table">
       <TableHeader />
@@ -62,9 +66,9 @@ const handleNextPage = () => {
         <template #cell-key="{ value }">
           <span class="key-text">{{ value }}</span>
         </template>
-        
+
         <template #cell-translation="{ value, row }">
-          <TranslationTooltip 
+          <TranslationTooltip
             :translation="row.originalItem"
             position="bottom"
             width="md"
@@ -74,7 +78,7 @@ const handleNextPage = () => {
             </template>
           </TranslationTooltip>
         </template>
-        
+
         <template #cell-updatedAt="{ value }">
           <span class="date-text">{{ value }}</span>
         </template>
@@ -89,7 +93,9 @@ const handleNextPage = () => {
 @use '~/assets/scss/mixins' as mix;
 
 .key-text {
-  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+  font-family:
+    'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New',
+    monospace;
   font-size: vars.$font-size-sm;
   color: vars.$color-text-primary;
   @include mix.text-truncate;
@@ -134,4 +140,4 @@ const handleNextPage = () => {
   width: 100%;
   table-layout: fixed;
 }
-</style> 
+</style>

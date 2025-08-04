@@ -20,36 +20,38 @@ const props = withDefaults(defineProps<Props>(), {
   pagination: false,
   loading: false,
   emptyMessage: 'No data available',
-  externalPagination: undefined
+  externalPagination: undefined,
 })
 
 // Use external pagination if provided, otherwise use local state
-const currentPage = computed(() => 
-  props.externalPagination?.currentPage ?? 1
+const currentPage = computed(() => props.externalPagination?.currentPage ?? 1)
+
+const totalPages = computed(
+  () =>
+    props.externalPagination?.totalPages ?? Math.ceil(props.data.length / 10)
 )
 
-const totalPages = computed(() => 
-  props.externalPagination?.totalPages ?? Math.ceil(props.data.length / 10)
+const startIndex = computed(
+  () => props.externalPagination?.startIndex ?? (currentPage.value - 1) * 10 + 1
 )
 
-const startIndex = computed(() => 
-  props.externalPagination?.startIndex ?? ((currentPage.value - 1) * 10 + 1)
+const endIndex = computed(
+  () =>
+    props.externalPagination?.endIndex ??
+    Math.min(currentPage.value * 10, props.data.length)
 )
 
-const endIndex = computed(() => 
-  props.externalPagination?.endIndex ?? Math.min(currentPage.value * 10, props.data.length)
+const totalItems = computed(
+  () => props.externalPagination?.totalItems ?? props.data.length
 )
 
-const totalItems = computed(() => 
-  props.externalPagination?.totalItems ?? props.data.length
+const hasNext = computed(
+  () =>
+    props.externalPagination?.hasNext ?? currentPage.value < totalPages.value
 )
 
-const hasNext = computed(() => 
-  props.externalPagination?.hasNext ?? (currentPage.value < totalPages.value)
-)
-
-const hasPrevious = computed(() => 
-  props.externalPagination?.hasPrevious ?? (currentPage.value > 1)
+const hasPrevious = computed(
+  () => props.externalPagination?.hasPrevious ?? currentPage.value > 1
 )
 
 const handlePrevPage = () => {
@@ -68,10 +70,10 @@ const handleNextPage = () => {
 const columnsWithWidth = computed(() => {
   const columnCount = props.columns.length
   const widthPercentage = `${100 / columnCount}%`
-  
+
   return props.columns.map(column => ({
     ...column,
-    width: widthPercentage
+    width: widthPercentage,
   }))
 })
 
@@ -92,7 +94,7 @@ provide('tableContext', {
   hasPrevious,
   handlePrevPage,
   handleNextPage,
-  handlePageChange: () => {} // Placeholder for external pagination
+  handlePageChange: () => {}, // Placeholder for external pagination
 })
 </script>
 
@@ -112,10 +114,10 @@ provide('tableContext', {
   overflow: hidden;
   box-shadow: vars.$shadow-sm;
   width: 100%;
-  
+
   :deep(.data-table) {
     width: 100%;
     border-collapse: collapse;
   }
 }
-</style> 
+</style>

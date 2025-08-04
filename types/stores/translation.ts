@@ -11,4 +11,4 @@ export interface FilterState {
   dateTo: string
   pageSize: number
   page: number
-} 
+}

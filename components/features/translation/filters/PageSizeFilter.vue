@@ -49,7 +49,7 @@ const closePageSizeFilter = () => {
         @click="handleFilterClick"
       />
     </template>
-    
+
     <ul class="page-size-options" role="listbox" aria-label="Page size options">
       <li
         v-for="size in pageSizeOptions"
@@ -77,7 +77,7 @@ const closePageSizeFilter = () => {
   list-style: none;
   margin: 0;
   padding: 0;
-  
+
   .page-size-option {
     padding: vars.$spacing-sm vars.$spacing-md;
     border: none;
@@ -89,24 +89,24 @@ const closePageSizeFilter = () => {
     transition: background-color 0.2s ease;
     width: 100%;
     margin: 0;
-    
+
     &:hover {
       background-color: vars.$color-primary-light;
     }
-    
+
     &.active {
       background-color: vars.$color-primary-light;
       color: vars.$color-primary;
       font-weight: vars.$font-weight-medium;
     }
-    
+
     &:first-child {
       border-radius: vars.$border-radius-sm vars.$border-radius-sm 0 0;
     }
-    
+
     &:last-child {
       border-radius: 0 0 vars.$border-radius-sm vars.$border-radius-sm;
     }
   }
 }
-</style> 
+</style>

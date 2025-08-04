@@ -3,15 +3,25 @@
 // Responsive mixins
 @mixin respond-to($breakpoint) {
   @if $breakpoint == sm {
-    @media (min-width: vars.$breakpoint-sm) { @content; }
+    @media (min-width: vars.$breakpoint-sm) {
+      @content;
+    }
   } @else if $breakpoint == md {
-    @media (min-width: vars.$breakpoint-md) { @content; }
+    @media (min-width: vars.$breakpoint-md) {
+      @content;
+    }
   } @else if $breakpoint == lg {
-    @media (min-width: vars.$breakpoint-lg) { @content; }
+    @media (min-width: vars.$breakpoint-lg) {
+      @content;
+    }
   } @else if $breakpoint == xl {
-    @media (min-width: vars.$breakpoint-xl) { @content; }
+    @media (min-width: vars.$breakpoint-xl) {
+      @content;
+    }
   } @else if $breakpoint == 2xl {
-    @media (min-width: vars.$breakpoint-2xl) { @content; }
+    @media (min-width: vars.$breakpoint-2xl) {
+      @content;
+    }
   }
 }
 
@@ -64,8 +74,10 @@
 }
 
 @mixin hover-lift {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-  
+  transition:
+    transform 0.2s ease-in-out,
+    box-shadow 0.2s ease-in-out;
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: vars.$shadow-lg;
@@ -87,12 +99,12 @@
   text-decoration: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
-  
+
   @include focus-visible;
 }
 
@@ -108,16 +120,16 @@
   background-color: vars.$color-background;
   color: vars.$color-text-primary;
   transition: border-color 0.2s ease-in-out;
-  
+
   &::placeholder {
     color: vars.$color-text-secondary;
   }
-  
+
   &:focus {
     outline: none;
     border-color: vars.$color-primary;
   }
-  
+
   @include focus-visible;
 }
 
@@ -132,4 +144,4 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax($min-width, 1fr));
   gap: vars.$spacing-md;
-} 
+}

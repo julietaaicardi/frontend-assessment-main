@@ -18,12 +18,12 @@ let debounceTimer: NodeJS.Timeout | null = null
 
 const handleInputChange = (value: string) => {
   localValue.value = value
-  
+
   // Clear existing timer
   if (debounceTimer) {
     clearTimeout(debounceTimer)
   }
-  
+
   // Set new timer
   debounceTimer = setTimeout(() => {
     emit('update:modelValue', value)
@@ -31,9 +31,12 @@ const handleInputChange = (value: string) => {
 }
 
 // Watch for prop changes to update local value
-watch(() => props.modelValue, (newValue) => {
-  localValue.value = newValue
-})
+watch(
+  () => props.modelValue,
+  newValue => {
+    localValue.value = newValue
+  }
+)
 </script>
 
 <template>
@@ -43,4 +46,4 @@ watch(() => props.modelValue, (newValue) => {
     aria-label="Search for translation keys"
     @update:model-value="handleInputChange"
   />
-</template> 
+</template>

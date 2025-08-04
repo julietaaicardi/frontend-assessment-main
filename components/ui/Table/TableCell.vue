@@ -8,19 +8,19 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  value: ''
+  value: '',
 })
 </script>
 
 <template>
-  <td 
+  <td
     class="table-cell"
     :class="`cell-${column?.key || ''} cell-${column?.align || 'left'}`"
   >
-    <slot 
-      :name="`cell-${column?.key}`" 
-      :row="row" 
-      :column="column" 
+    <slot
+      :name="`cell-${column?.key}`"
+      :row="row"
+      :column="column"
       :value="value"
     >
       <span class="cell-content">
@@ -37,19 +37,19 @@ const props = withDefaults(defineProps<Props>(), {
 .table-cell {
   padding: vars.$spacing-md;
   vertical-align: middle;
-  
+
   &.cell-left {
     text-align: left;
   }
-  
+
   &.cell-center {
     text-align: center;
   }
-  
+
   &.cell-right {
     text-align: right;
   }
-  
+
   .cell-content {
     color: vars.$color-text-primary;
     @include mix.text-truncate;
@@ -62,4 +62,4 @@ const props = withDefaults(defineProps<Props>(), {
     padding: vars.$spacing-lg;
   }
 }
-</style> 
+</style>
