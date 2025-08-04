@@ -1,4 +1,3 @@
-<script lang="ts" setup></script>
 <template>
   <Head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />

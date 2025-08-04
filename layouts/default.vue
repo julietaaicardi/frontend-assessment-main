@@ -1,3 +1,21 @@
+<script lang="ts" setup>
+// Layout metadata
+useHead({
+  title: 'Translation Keys Manager',
+  meta: [
+    {
+      name: 'description',
+      content:
+        'Manage translation keys and their values across different locales',
+    },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+  ],
+  htmlAttrs: {
+    'data-theme': 'light',
+  },
+})
+</script>
+
 <template>
   <div class="layout">
     <Header class="app-header">
@@ -17,24 +35,6 @@
     </main>
   </div>
 </template>
-
-<script lang="ts" setup>
-// Layout metadata
-useHead({
-  title: 'Translation Keys Manager',
-  meta: [
-    {
-      name: 'description',
-      content:
-        'Manage translation keys and their values across different locales',
-    },
-    { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-  ],
-  htmlAttrs: {
-    'data-theme': 'light',
-  },
-})
-</script>
 
 <style lang="scss" scoped>
 @use '~/assets/scss/abstracts' as *;

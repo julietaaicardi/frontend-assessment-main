@@ -1,3 +1,4 @@
+import { computed } from 'vue'
 import { useTranslationTableStore } from './table'
 import { useTranslationFiltersStore } from './filters'
 import { useRootStore } from '~/stores'
@@ -25,21 +26,6 @@ export const useTranslationCoordination = () => {
       hasNext: filtersStore.page < totalPages,
       hasPrevious: filtersStore.page > 1,
     }
-  })
-
-  const hasNextPage = computed(() => {
-    return (
-      filtersStore.page <
-      Math.ceil(tableStore.totalCount / filtersStore.pageSize)
-    )
-  })
-
-  const hasPreviousPage = computed(() => {
-    return filtersStore.page > 1
-  })
-
-  const totalPages = computed(() => {
-    return Math.ceil(tableStore.totalCount / filtersStore.pageSize)
   })
 
   // Actions that coordinate between stores
@@ -83,10 +69,6 @@ export const useTranslationCoordination = () => {
     filtersStore.updatePage(page)
   }
 
-  const clearFilters = async () => {
-    filtersStore.clearFilters()
-  }
-
   return {
     // Store references
     tableStore,
@@ -95,9 +77,6 @@ export const useTranslationCoordination = () => {
 
     // Computed properties
     paginationInfo,
-    hasNextPage,
-    hasPreviousPage,
-    totalPages,
 
     // Actions
     fetchKeys,
@@ -105,6 +84,5 @@ export const useTranslationCoordination = () => {
     updateDateRange,
     updatePageSize,
     updatePage,
-    clearFilters,
   }
 }

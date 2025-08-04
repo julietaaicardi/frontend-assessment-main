@@ -1,5 +1,3 @@
-<script lang="ts" setup></script>
-
 <template>
   <main>
     <img src="~/assets/images/goose.png" class="goose" />

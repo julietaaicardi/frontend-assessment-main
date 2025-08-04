@@ -103,20 +103,3 @@ li {
 .text-center {
   text-align: center;
 }
-
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
-}
-
-.text-truncate {
-  @include mix.text-truncate;
-}
-
-// Container utility
-.container {
-  @include mix.container;
-}
